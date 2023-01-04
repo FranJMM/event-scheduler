@@ -1,6 +1,6 @@
 package com.martinezmencias.eventscheduler.di
 
-import com.martinezmencias.eventscheduler.data.server.EventRemoteDataSource
+import com.martinezmencias.eventscheduler.data.datasource.EventRemoteDataSource
 import com.martinezmencias.eventscheduler.data.server.EventServerDataSource
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf

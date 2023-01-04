@@ -6,6 +6,7 @@ androidx-navigation = "2.5.3"
 androidx-constraintlayout = "2.1.4"
 androidx-test-ext-junit = "1.1.4"
 androidx-test-espresso-core = "3.5.0"
+coroutines = "1.6.4"
 glide = "4.13.1"
 junit = "4.13.2"
 koin = "3.2.2"
@@ -14,7 +15,7 @@ okhttpclient-logging-interceptor = "4.10.0"
 retrofit = "2.9.0"
 
 gradle-plugin-version = "7.1.3"
-org-jetbrains-kotlin-android = "1.7.20"
+org-jetbrains-kotlin = "1.7.20"
 
 [libraries]
 android-material = { module = "com.google.android.material:material", version.ref = "android-material" }
@@ -25,6 +26,8 @@ androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", ver
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext-junit" }
 androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-test-espresso-core" }
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -39,6 +42,7 @@ retrofit-converter-json = { module = "com.squareup.retrofit2:converter-gson", ve
 
 [bundles]
 androidx-navigation = ["androidx-navigation-fragment", "androidx-navigation-ui"]
+coroutines = ["coroutines-core", "coroutines-test"]
 glide = ["glide", "glide-compiler"]
 koin = ["koin-core", "koin-test", "koin-junit-4", "koin-android", "koin-android-compat"]
 retrofit = ["retrofit", "retrofit-converter-json", "okttp3-logging-interceptor"]
@@ -46,5 +50,5 @@ retrofit = ["retrofit", "retrofit-converter-json", "okttp3-logging-interceptor"]
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "gradle-plugin-version" }
 com-android-library = { id = "com.android.library", version.ref = "gradle-plugin-version" }
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
-
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin" }
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin" }

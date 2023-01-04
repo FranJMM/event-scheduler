@@ -43,6 +43,9 @@ android {
 
 dependencies {
 
+    implementation project(":data")
+    implementation project(":domain")
+
     // Android
     implementation libs.android.material
     implementation libs.androidx.core.ktx

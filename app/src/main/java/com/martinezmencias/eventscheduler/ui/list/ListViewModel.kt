@@ -2,7 +2,7 @@ package com.martinezmencias.eventscheduler.ui.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.martinezmencias.eventscheduler.data.server.EventRemoteDataSource
+import com.martinezmencias.eventscheduler.data.datasource.EventRemoteDataSource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,10 +22,9 @@ class ListViewModel : ViewModel(), KoinComponent{
         
         viewModelScope.launch {
             val remoteEvents = eventRemoteDataSource.requestEvents()
-            val events = remoteEvents.map { Event(name = it.name, image = it.images.first().url) }
-            _state.update { UiState(events = events) }
+            _state.update { UiState(events = remoteEvents) }
         }
     }
 
-    data class UiState(val events: List<Event>? = null)
+    data class UiState(val events: List<com.martinezmencias.eventscheduler.domain.Event>? = null)
 }

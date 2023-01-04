@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.martinezmencias.eventscheduler.databinding.ViewEventBinding
 
 class EventsAdapter :
-    ListAdapter<Event, EventsAdapter.ViewHolder>(basicDiffUtil { old, new ->
+    ListAdapter<com.martinezmencias.eventscheduler.domain.Event, EventsAdapter.ViewHolder>(basicDiffUtil { old, new ->
         old.name == new.name }
     ) {
 
