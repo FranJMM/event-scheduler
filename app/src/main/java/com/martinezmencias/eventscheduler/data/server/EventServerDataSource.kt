@@ -1,5 +1,6 @@
 package com.martinezmencias.eventscheduler.data.server
 
+import com.martinezmencias.eventscheduler.BuildConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -17,13 +18,13 @@ class EventServerDataSource : EventRemoteDataSource {
     override suspend fun requestEvents(): List<RemoteEvent> = withContext(Dispatchers.IO) {
         val remoteService = provideRemoteService()
         remoteService.requestEvents(
-            apiKey = "",
+            apiKey = BuildConfig.API_KEY,
             countryCode = "ES",
             classificationName = "music"
         ).embedded.events
     }
 
-    private fun provideRemoteService(): RemoteService = provideRemoteService("")
+    private fun provideRemoteService(): RemoteService = provideRemoteService(BuildConfig.ENDPOINT)
 
     private inline fun <reified T> provideRemoteService(baseUrl: String): T = Retrofit.Builder()
         .baseUrl(baseUrl)
