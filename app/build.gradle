@@ -1,0 +1,63 @@
+plugins {
+    alias libs.plugins.com.android.application
+    alias libs.plugins.org.jetbrains.kotlin.android
+}
+
+android {
+    namespace 'com.martinezmencias.eventscheduler'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.martinezmencias.eventscheduler"
+        minSdk 23
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    // Android
+    implementation libs.android.material
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.bundles.androidx.navigation
+    implementation libs.androidx.constraintlayout
+
+    // Koin
+    implementation libs.bundles.koin
+
+    // Retrofit & OkHttpClient
+    implementation libs.bundles.retrofit
+
+    // Glide
+    implementation libs.bundles.glide
+
+    // Testing
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.androidx.test.espresso.core
+}
