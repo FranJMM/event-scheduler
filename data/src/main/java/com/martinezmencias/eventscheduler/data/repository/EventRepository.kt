@@ -9,9 +9,10 @@ class EventRepository(
     private val remoteDataSource: EventRemoteDataSource
 ) {
 
-    val events get() = localDataSource.events
+    val events = localDataSource.events
 
-    suspend fun requestEvents(): List<Event> {
-        return remoteDataSource.requestEvents()
+    suspend fun requestEvents() {
+        val events = remoteDataSource.requestEvents()
+        localDataSource.saveEvents(events)
     }
 }

@@ -5,5 +5,5 @@ import com.martinezmencias.eventscheduler.domain.Event
 
 class RequestEventsUseCase(private val eventsRepository: EventRepository) {
 
-    suspend operator fun invoke(): List<Event> = eventsRepository.requestEvents()
+    suspend operator fun invoke() = eventsRepository.requestEvents()
 }

@@ -15,8 +15,9 @@ class EventServerDataSource(private val remoteService: RemoteService) : EventRem
             classificationName = "music"
         ).embedded.events.map {
             Event(
+                id = it.id,
                 name = it.name,
-                image = it.images.first().url
+                imageUrl = it.images.first().url
             )
         }
     }

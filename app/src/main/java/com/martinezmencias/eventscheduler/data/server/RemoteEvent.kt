@@ -10,6 +10,6 @@ data class RemoteEmbedded(
     val events: List<RemoteEvent>
 )
 
-data class RemoteEvent(val name: String, val images: List<RemoteImage>)
+data class RemoteEvent(val id: String, val name: String, val images: List<RemoteImage>)
 
 data class RemoteImage(val url: String)

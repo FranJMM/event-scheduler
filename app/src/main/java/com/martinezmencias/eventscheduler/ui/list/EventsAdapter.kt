@@ -21,7 +21,7 @@ class EventsAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val event = getItem(position)
         holder.binding.eventTitle.text = event.name
-        Glide.with(holder.binding.eventImage).load(event.image).into(holder.binding.eventImage)
+        Glide.with(holder.binding.eventImage).load(event.imageUrl).into(holder.binding.eventImage)
     }
 
     class ViewHolder(val binding: ViewEventBinding) : RecyclerView.ViewHolder(binding.root)

@@ -1,6 +1,8 @@
 package com.martinezmencias.eventscheduler.di
 
 import com.martinezmencias.eventscheduler.BuildConfig
+import com.martinezmencias.eventscheduler.data.database.EventDao
+import com.martinezmencias.eventscheduler.data.database.EventDatabase
 import com.martinezmencias.eventscheduler.data.datasource.EventLocalDataSource
 import com.martinezmencias.eventscheduler.data.datasource.EventRemoteDataSource
 import com.martinezmencias.eventscheduler.data.repository.EventRepository
@@ -9,6 +11,7 @@ import com.martinezmencias.eventscheduler.data.server.EventServerDataSource
 import com.martinezmencias.eventscheduler.data.server.RemoteConnection
 import com.martinezmencias.eventscheduler.data.server.RemoteService
 import com.martinezmencias.eventscheduler.ui.list.ListViewModel
+import com.martinezmencias.eventscheduler.usecases.GetEventsUseCase
 import com.martinezmencias.eventscheduler.usecases.RequestEventsUseCase
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -23,6 +26,7 @@ val appModules = module {
 
     // UseCase
     singleOf(::RequestEventsUseCase)
+    singleOf(::GetEventsUseCase)
 
     // Repository
     singleOf(::EventRepository)
@@ -32,6 +36,10 @@ val appModules = module {
     singleOf(::EventRoomDataSource) { bind<EventLocalDataSource>() }
 
     // Connection
-    single<RemoteService> { RemoteConnection.provideRemoteService(BuildConfig.ENDPOINT, get()) }
-    single<OkHttpClient> { RemoteConnection.provideOkHttpClient() }
+    single<RemoteService> { RemoteConnection.createRemoteService(BuildConfig.ENDPOINT, get()) }
+    single<OkHttpClient> { RemoteConnection.createOkHttpClient() }
+
+    // Database
+    single<EventDatabase> { EventDatabase.createDatabase(get()) }
+    single<EventDao> { get<EventDatabase>().eventDao() }
 }

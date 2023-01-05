@@ -2,23 +2,27 @@ package com.martinezmencias.eventscheduler.ui.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.martinezmencias.eventscheduler.usecases.GetEventsUseCase
 import com.martinezmencias.eventscheduler.usecases.RequestEventsUseCase
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class ListViewModel(private val requestEventsUseCase: RequestEventsUseCase) : ViewModel() {
+class ListViewModel(
+    private val getEventsUseCase: GetEventsUseCase,
+    private val requestEventsUseCase: RequestEventsUseCase
+) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
 
     init {
-        
         viewModelScope.launch {
-            val remoteEvents = requestEventsUseCase()
-            _state.update { UiState(events = remoteEvents) }
+            getEventsUseCase().collect() { events ->
+                _state.update { UiState(events = events) }
+            }
+        }
+        viewModelScope.launch {
+            requestEventsUseCase()
         }
     }
 

@@ -7,4 +7,6 @@ import kotlinx.coroutines.flow.Flow
 interface EventLocalDataSource {
 
     val events: Flow<List<Event>>
+
+    suspend fun saveEvents(events: List<Event>)
 }

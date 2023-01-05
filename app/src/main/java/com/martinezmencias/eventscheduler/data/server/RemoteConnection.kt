@@ -8,7 +8,7 @@ import retrofit2.create
 
 object RemoteConnection {
 
-    inline fun <reified T> provideRemoteService(baseUrl: String, okHttpClient: OkHttpClient): T =
+    inline fun <reified T> createRemoteService(baseUrl: String, okHttpClient: OkHttpClient): T =
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(okHttpClient)
@@ -16,7 +16,7 @@ object RemoteConnection {
             .build()
             .create()
 
-    fun provideOkHttpClient(): OkHttpClient {
+    fun createOkHttpClient(): OkHttpClient {
         val logginInterceptor =
             HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
         return OkHttpClient.Builder().addInterceptor(logginInterceptor).build()
