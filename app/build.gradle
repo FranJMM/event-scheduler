@@ -1,6 +1,7 @@
 plugins {
     alias libs.plugins.com.android.application
     alias libs.plugins.org.jetbrains.kotlin.android
+    id 'org.jetbrains.kotlin.kapt'
 }
 
 android {
@@ -49,9 +50,11 @@ dependencies {
 
     // Android
     implementation libs.android.material
-    implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
+    implementation libs.androidx.core.ktx
     implementation libs.bundles.androidx.navigation
+    implementation libs.bundles.androidx.room
+    kapt libs.androidx.room.compiler
     implementation libs.androidx.constraintlayout
 
     // Koin
@@ -62,6 +65,7 @@ dependencies {
 
     // Glide
     implementation libs.bundles.glide
+    kapt libs.glide.compiler
 
     // Testing
     testImplementation libs.junit
