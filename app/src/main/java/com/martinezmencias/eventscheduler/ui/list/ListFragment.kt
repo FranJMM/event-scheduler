@@ -3,7 +3,6 @@ package com.martinezmencias.eventscheduler.ui.list
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -12,10 +11,11 @@ import com.martinezmencias.eventscheduler.R
 import com.martinezmencias.eventscheduler.databinding.FragmentListBinding
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListFragment : Fragment(R.layout.fragment_list) {
 
-    private val viewModel: ListViewModel by viewModels()
+    private val viewModel: ListViewModel by viewModel()
 
     private val adapter by lazy { EventsAdapter() }
 
