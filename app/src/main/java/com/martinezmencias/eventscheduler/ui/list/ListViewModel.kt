@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.martinezmencias.eventscheduler.usecases.GetEventsUseCase
 import com.martinezmencias.eventscheduler.usecases.RequestEventsUseCase
+import com.martinezmencias.eventscheduler.domain.Error
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -25,9 +26,13 @@ class ListViewModel(
 
     fun onUiReady() {
         viewModelScope.launch {
-            requestEventsUseCase()
+            val result = requestEventsUseCase()
+            _state.update { UiState(error = result)  }
         }
     }
 
-    data class UiState(val events: List<com.martinezmencias.eventscheduler.domain.Event>? = null)
+    data class UiState(
+        val events: List<com.martinezmencias.eventscheduler.domain.Event>? = null,
+        val error: Error? = null
+    )
 }

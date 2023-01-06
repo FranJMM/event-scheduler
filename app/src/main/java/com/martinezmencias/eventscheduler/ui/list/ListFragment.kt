@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.martinezmencias.eventscheduler.R
 import com.martinezmencias.eventscheduler.databinding.FragmentListBinding
+import com.martinezmencias.eventscheduler.ui.util.setVisible
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -19,22 +20,27 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private val adapter by lazy { EventsAdapter() }
 
-    private lateinit var state: ListState
+    private lateinit var listState: ListState
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        state = this.createListState()
+        listState = this.createListState()
 
-        FragmentListBinding.bind(view).apply {
+        val binding = FragmentListBinding.bind(view).apply {
             recycler.adapter = adapter
         }
 
         viewLifecycleOwner.launchAndCollect(viewModel.state) { state ->
+
             adapter.submitList(state.events)
+            binding.recycler.setVisible(true)
+
+            binding.error.text = state.error?.let { listState.errorToString(it) }
+            binding.error.setVisible(false)
         }
 
-        state.requestLocationPermission {
+        listState.requestLocationPermission {
             viewModel.onUiReady()
         }
     }

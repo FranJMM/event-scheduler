@@ -2,7 +2,7 @@ package com.martinezmencias.eventscheduler.data.repository
 
 import com.martinezmencias.eventscheduler.data.datasource.EventLocalDataSource
 import com.martinezmencias.eventscheduler.data.datasource.EventRemoteDataSource
-import com.martinezmencias.eventscheduler.domain.Event
+import com.martinezmencias.eventscheduler.domain.Error
 
 class EventRepository(
     private val regionRepository: RegionRepository,
@@ -12,10 +12,15 @@ class EventRepository(
 
     val events = localDataSource.events
 
-    suspend fun requestEvents() {
+    suspend fun requestEvents(): Error? {
         if (localDataSource.isEmpty()) {
-            val events = remoteDataSource.requestEvents(regionRepository.findLastRegion())
-            localDataSource.saveEvents(events)
+            val result = remoteDataSource.requestEvents(regionRepository.findLastRegion())
+            result.fold({
+                return it
+            }, { events ->
+                localDataSource.saveEvents(events)
+            })
         }
+        return null
     }
 }

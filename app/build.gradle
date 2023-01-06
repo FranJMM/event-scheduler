@@ -68,6 +68,9 @@ dependencies {
     implementation libs.bundles.glide
     kapt libs.glide.compiler
 
+    // Arrow
+    implementation libs.arrow.core
+
     // Testing
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit
