@@ -5,6 +5,7 @@ import com.martinezmencias.eventscheduler.data.datasource.EventRemoteDataSource
 import com.martinezmencias.eventscheduler.domain.Event
 
 class EventRepository(
+    private val regionRepository: RegionRepository,
     private val localDataSource: EventLocalDataSource,
     private val remoteDataSource: EventRemoteDataSource
 ) {
@@ -12,7 +13,9 @@ class EventRepository(
     val events = localDataSource.events
 
     suspend fun requestEvents() {
-        val events = remoteDataSource.requestEvents()
-        localDataSource.saveEvents(events)
+        if (localDataSource.isEmpty()) {
+            val events = remoteDataSource.requestEvents(regionRepository.findLastRegion())
+            localDataSource.saveEvents(events)
+        }
     }
 }

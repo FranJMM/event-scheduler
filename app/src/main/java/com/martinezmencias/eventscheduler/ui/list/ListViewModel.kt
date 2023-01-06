@@ -21,6 +21,9 @@ class ListViewModel(
                 _state.update { UiState(events = events) }
             }
         }
+    }
+
+    fun onUiReady() {
         viewModelScope.launch {
             requestEventsUseCase()
         }

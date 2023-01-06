@@ -1,12 +1,17 @@
 package com.martinezmencias.eventscheduler.di
 
 import com.martinezmencias.eventscheduler.BuildConfig
+import com.martinezmencias.eventscheduler.data.PermissionChecker
 import com.martinezmencias.eventscheduler.data.database.EventDao
 import com.martinezmencias.eventscheduler.data.database.EventDatabase
 import com.martinezmencias.eventscheduler.data.datasource.EventLocalDataSource
 import com.martinezmencias.eventscheduler.data.datasource.EventRemoteDataSource
 import com.martinezmencias.eventscheduler.data.repository.EventRepository
+import com.martinezmencias.eventscheduler.data.repository.RegionRepository
 import com.martinezmencias.eventscheduler.data.database.EventRoomDataSource
+import com.martinezmencias.eventscheduler.data.datasource.LocationDataSource
+import com.martinezmencias.eventscheduler.data.location.PlayServicesLocationDataSource
+import com.martinezmencias.eventscheduler.data.permissions.AndroidPermissionChecker
 import com.martinezmencias.eventscheduler.data.server.EventServerDataSource
 import com.martinezmencias.eventscheduler.data.server.RemoteConnection
 import com.martinezmencias.eventscheduler.data.server.RemoteService
@@ -30,6 +35,7 @@ val appModules = module {
 
     // Repository
     singleOf(::EventRepository)
+    singleOf(::RegionRepository)
 
     // DataSource
     singleOf(::EventServerDataSource) { bind<EventRemoteDataSource>() }
@@ -42,4 +48,10 @@ val appModules = module {
     // Database
     single<EventDatabase> { EventDatabase.createDatabase(get()) }
     single<EventDao> { get<EventDatabase>().eventDao() }
+
+    // Permissions
+    singleOf(::AndroidPermissionChecker) { bind<PermissionChecker>() }
+
+    // Location
+    singleOf(::PlayServicesLocationDataSource) { bind<LocationDataSource>() }
 }

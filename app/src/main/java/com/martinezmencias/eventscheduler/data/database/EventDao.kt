@@ -12,6 +12,9 @@ interface EventDao {
     @Query("SELECT * FROM Event")
     fun getAll(): Flow<List<Event>>
 
+    @Query("SELECT COUNT(primaryId) FROM Event")
+    suspend fun eventCount(): Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEvents(events: List<Event>)
 }

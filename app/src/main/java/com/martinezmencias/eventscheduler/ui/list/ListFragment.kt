@@ -19,8 +19,12 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private val adapter by lazy { EventsAdapter() }
 
+    private lateinit var state: ListState
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        state = this.createListState()
 
         FragmentListBinding.bind(view).apply {
             recycler.adapter = adapter
@@ -28,6 +32,10 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
         viewLifecycleOwner.launchAndCollect(viewModel.state) { state ->
             adapter.submitList(state.events)
+        }
+
+        state.requestLocationPermission {
+            viewModel.onUiReady()
         }
     }
 

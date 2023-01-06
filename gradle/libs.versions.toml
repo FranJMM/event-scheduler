@@ -13,6 +13,7 @@ junit = "4.13.2"
 koin = "3.2.2"
 koin-android = "3.2.3"
 okhttpclient-logging-interceptor = "4.10.0"
+playservices-location = "21.0.1"
 retrofit = "2.9.0"
 
 gradle-plugin-version = "7.3.0"
@@ -41,6 +42,7 @@ koin-junit-4 =  { module = "io.insert-koin:koin-test-junit4", version.ref = "koi
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin-android"}
 koin-android-compat = { module = "io.insert-koin:koin-android-compat", version.ref = "koin-android"}
 okttp3-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttpclient-logging-interceptor"}
+playservices-location = { module = "com.google.android.gms:play-services-location", version.ref = "playservices-location"}
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-converter-json = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 

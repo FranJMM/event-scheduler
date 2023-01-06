@@ -8,10 +8,10 @@ import kotlinx.coroutines.withContext
 
 class EventServerDataSource(private val remoteService: RemoteService) : EventRemoteDataSource {
 
-    override suspend fun requestEvents(): List<Event> = withContext(Dispatchers.IO) {
+    override suspend fun requestEvents(region: String): List<Event> = withContext(Dispatchers.IO) {
         remoteService.requestEvents(
             apiKey = BuildConfig.API_KEY,
-            countryCode = "ES",
+            countryCode = region,
             classificationName = "music"
         ).embedded.events.map {
             Event(

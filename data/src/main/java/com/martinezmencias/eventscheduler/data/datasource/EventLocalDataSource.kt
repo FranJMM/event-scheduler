@@ -8,5 +8,7 @@ interface EventLocalDataSource {
 
     val events: Flow<List<Event>>
 
+    suspend fun isEmpty(): Boolean
+
     suspend fun saveEvents(events: List<Event>)
 }
