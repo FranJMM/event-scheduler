@@ -15,6 +15,7 @@ import com.martinezmencias.eventscheduler.data.permissions.AndroidPermissionChec
 import com.martinezmencias.eventscheduler.data.server.EventServerDataSource
 import com.martinezmencias.eventscheduler.data.server.RemoteConnection
 import com.martinezmencias.eventscheduler.data.server.RemoteService
+import com.martinezmencias.eventscheduler.ui.detail.DetailViewModel
 import com.martinezmencias.eventscheduler.ui.list.ListViewModel
 import com.martinezmencias.eventscheduler.usecases.GetEventsUseCase
 import com.martinezmencias.eventscheduler.usecases.RequestEventsUseCase
@@ -28,6 +29,7 @@ val appModules = module {
 
     // ViewModel
     viewModelOf(::ListViewModel)
+    viewModelOf(::DetailViewModel)
 
     // UseCase
     singleOf(::RequestEventsUseCase)

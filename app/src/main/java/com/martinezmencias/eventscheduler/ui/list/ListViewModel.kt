@@ -27,7 +27,7 @@ class ListViewModel(
     fun onUiReady() {
         viewModelScope.launch {
             val result = requestEventsUseCase()
-            _state.update { UiState(error = result)  }
+            _state.update { state.value.copy(error = result)  }
         }
     }
 

@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.martinezmencias.eventscheduler.R
 import com.martinezmencias.eventscheduler.ui.common.PermissionRequester
 import com.martinezmencias.eventscheduler.domain.Error
+import com.martinezmencias.eventscheduler.domain.Event
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -25,6 +26,11 @@ class ListState(
     private val navController: NavController,
     private val permissionRequester: PermissionRequester
 ) {
+    fun onEventClicked(event: Event) {
+        val action = ListFragmentDirections.actionListToDetail(event.id)
+        navController.navigate(action)
+    }
+
     fun requestLocationPermission(afterRequest: (Boolean) -> Unit) {
         scope.launch {
             val result = permissionRequester.request(Manifest.permission.ACCESS_COARSE_LOCATION)

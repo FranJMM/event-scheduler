@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.martinezmencias.eventscheduler.databinding.ViewEventBinding
+import com.martinezmencias.eventscheduler.domain.Event
 
-class EventsAdapter :
-    ListAdapter<com.martinezmencias.eventscheduler.domain.Event, EventsAdapter.ViewHolder>(basicDiffUtil { old, new ->
-        old.name == new.name }
-    ) {
+class EventsAdapter(private val listener: (Event) -> Unit) :
+    ListAdapter<Event, EventsAdapter.ViewHolder>(basicDiffUtil { old, new ->
+        old.name == new.name
+    }) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ViewEventBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -20,6 +21,7 @@ class EventsAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val event = getItem(position)
+        holder.binding.eventView.setOnClickListener { listener(event) }
         holder.binding.eventTitle.text = event.name
         Glide.with(holder.binding.eventImage).load(event.imageUrl).into(holder.binding.eventImage)
     }

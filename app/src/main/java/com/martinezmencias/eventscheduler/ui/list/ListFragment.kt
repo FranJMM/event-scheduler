@@ -18,7 +18,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private val viewModel: ListViewModel by viewModel()
 
-    private val adapter by lazy { EventsAdapter() }
+    private val adapter by lazy { EventsAdapter { event -> listState.onEventClicked(event)} }
 
     private lateinit var listState: ListState
 
@@ -34,10 +34,10 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         viewLifecycleOwner.launchAndCollect(viewModel.state) { state ->
 
             adapter.submitList(state.events)
-            binding.recycler.setVisible(true)
+            binding.recycler.setVisible(state.error == null)
 
             binding.error.text = state.error?.let { listState.errorToString(it) }
-            binding.error.setVisible(false)
+            binding.error.setVisible(state.error != null)
         }
 
         listState.requestLocationPermission {
