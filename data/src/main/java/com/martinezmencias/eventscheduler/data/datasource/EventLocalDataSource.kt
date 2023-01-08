@@ -8,6 +8,8 @@ interface EventLocalDataSource {
 
     val events: Flow<List<Event>>
 
+    fun findEventById(id: String): Flow<Event>
+
     suspend fun isEmpty(): Boolean
 
     suspend fun saveEvents(events: List<Event>)

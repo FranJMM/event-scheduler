@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.martinezmencias.eventscheduler.R
 import com.martinezmencias.eventscheduler.databinding.FragmentListBinding
+import com.martinezmencias.eventscheduler.ui.common.launchAndCollect
 import com.martinezmencias.eventscheduler.ui.util.setVisible
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -32,12 +33,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         }
 
         viewLifecycleOwner.launchAndCollect(viewModel.state) { state ->
-
-            adapter.submitList(state.events)
-            binding.recycler.setVisible(state.error == null)
-
-            binding.error.text = state.error?.let { listState.errorToString(it) }
-            binding.error.setVisible(state.error != null)
+            binding.handleUiState(state)
         }
 
         listState.requestLocationPermission {
@@ -45,16 +41,11 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         }
     }
 
-    fun <T> LifecycleOwner.launchAndCollect(
-        flow: Flow<T>,
-        state: Lifecycle.State = Lifecycle.State.STARTED,
-        body: (T) -> Unit
-    ) {
-        lifecycleScope.launch {
-            this@launchAndCollect.repeatOnLifecycle(state) {
-                flow.collect(body)
-            }
-        }
-    }
+    private fun FragmentListBinding.handleUiState(state: ListViewModel.UiState) {
+        adapter.submitList(state.events)
+        recycler.setVisible(state.error == null)
 
+        error.text = state.error?.let { listState.errorToString(it) }
+        error.setVisible(state.error != null)
+    }
 }

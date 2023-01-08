@@ -17,10 +17,12 @@ import com.martinezmencias.eventscheduler.data.server.RemoteConnection
 import com.martinezmencias.eventscheduler.data.server.RemoteService
 import com.martinezmencias.eventscheduler.ui.detail.DetailViewModel
 import com.martinezmencias.eventscheduler.ui.list.ListViewModel
+import com.martinezmencias.eventscheduler.usecases.FindEventUseCase
 import com.martinezmencias.eventscheduler.usecases.GetEventsUseCase
 import com.martinezmencias.eventscheduler.usecases.RequestEventsUseCase
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModelOf
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
@@ -29,11 +31,12 @@ val appModules = module {
 
     // ViewModel
     viewModelOf(::ListViewModel)
-    viewModelOf(::DetailViewModel)
+    viewModel { (eventId: String) -> DetailViewModel(eventId = eventId, get()) }
 
     // UseCase
     singleOf(::RequestEventsUseCase)
     singleOf(::GetEventsUseCase)
+    singleOf(::FindEventUseCase)
 
     // Repository
     singleOf(::EventRepository)

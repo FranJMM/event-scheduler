@@ -12,6 +12,9 @@ interface EventDao {
     @Query("SELECT * FROM Event")
     fun getAll(): Flow<List<Event>>
 
+    @Query("SELECT * FROM Event WHERE id = :id")
+    fun findById(id: String): Flow<Event>
+
     @Query("SELECT COUNT(primaryId) FROM Event")
     suspend fun eventCount(): Int
 

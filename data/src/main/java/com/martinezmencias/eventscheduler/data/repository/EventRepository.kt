@@ -12,6 +12,8 @@ class EventRepository(
 
     val events = localDataSource.events
 
+    fun findEventById(id: String) = localDataSource.findEventById(id)
+
     suspend fun requestEvents(): Error? {
         if (localDataSource.isEmpty()) {
             val result = remoteDataSource.requestEvents(regionRepository.findLastRegion())
