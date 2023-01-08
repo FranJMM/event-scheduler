@@ -10,6 +10,20 @@ data class RemoteEmbedded(
     val events: List<RemoteEvent>
 )
 
-data class RemoteEvent(val id: String, val name: String, val images: List<RemoteImage>)
+data class RemoteEvent(
+    val id: String,
+    val name: String,
+    val images: List<RemoteImage>,
+    val dates: Dates?,
+    val sales: Sales?
+)
 
 data class RemoteImage(val url: String)
+
+data class Dates(val start: Date?)
+
+data class Date(@SerializedName("dateTime")  val time: String)
+
+data class Sales(@SerializedName("public")  val publicSales: PublicSales?)
+
+data class PublicSales(@SerializedName("startDateTime")  val startTime: String)

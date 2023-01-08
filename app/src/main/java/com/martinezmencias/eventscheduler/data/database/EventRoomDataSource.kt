@@ -20,10 +20,16 @@ class EventRoomDataSource(private val eventDao: EventDao) : EventLocalDataSource
         eventDao.insertEvents(events.toEntityModel())
 }
 
-private fun EventEntity.toDomainModel() = Event(id, name, imageUrl)
+private fun EventEntity.toDomainModel() = Event(id, name, imageUrl, startTime, salesStartTime)
 
 private fun List<EventEntity>.toDomainModel() = this.map { it.toDomainModel() }
 
-private fun Event.toEntityModel() = EventEntity(id = id, name = name, imageUrl = imageUrl)
+private fun Event.toEntityModel() = EventEntity(
+    id = id,
+    name = name,
+    imageUrl = imageUrl,
+    startTime = startTime,
+    salesStartTime = salesStartTime
+)
 
 private fun List<Event>.toEntityModel() = this.map { it.toEntityModel() }

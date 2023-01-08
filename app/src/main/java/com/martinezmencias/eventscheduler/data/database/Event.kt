@@ -8,5 +8,7 @@ data class Event(
     @PrimaryKey(autoGenerate = true) val primaryId: Int = 0,
     val id: String,
     val name: String,
-    val imageUrl: String
+    val imageUrl: String,
+    val startTime: String,
+    val salesStartTime: String
 )

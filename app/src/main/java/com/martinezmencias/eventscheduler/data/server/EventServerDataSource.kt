@@ -27,6 +27,8 @@ class EventServerDataSource(private val remoteService: RemoteService) : EventRem
         Event(
             id = id,
             name = name,
-            imageUrl = images.first().url
+            imageUrl = images.first().url,
+            startTime = dates?.start?.time ?: "",
+            salesStartTime = sales?.publicSales?.startTime ?: ""
         )
 }

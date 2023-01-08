@@ -32,6 +32,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         state.event?.let { event ->
             Glide.with(eventImage).load(event.imageUrl).into(eventImage)
             eventName.text = event.name
+            eventDetailInfo.setEvent(event)
         }
     }
 }
