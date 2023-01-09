@@ -2,15 +2,14 @@ package com.martinezmencias.eventscheduler.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
 
 @Entity
-data class Event(
+data class VenueEntity(
     @PrimaryKey(autoGenerate = true) val primaryId: Int = 0,
     val id: String,
     val name: String,
-    val imageUrl: String,
-    val startTime: Date?,
-    val salesUrl: String?,
-    val salesStartTime: Date?
+    val city: String,
+    val state: String,
+    val country: String,
+    val address: String
 )

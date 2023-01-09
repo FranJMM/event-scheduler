@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [Event::class], version = 1, exportSchema = false)
+@Database(entities = [EventBasicEntity::class, VenueEntity::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class EventDatabase : RoomDatabase() {
 
@@ -19,4 +19,6 @@ abstract class EventDatabase : RoomDatabase() {
     }
 
     abstract fun eventDao(): EventDao
+
+    abstract fun venueDao(): VenueDao
 }

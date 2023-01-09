@@ -9,6 +9,7 @@ import com.martinezmencias.eventscheduler.data.datasource.EventRemoteDataSource
 import com.martinezmencias.eventscheduler.data.repository.EventRepository
 import com.martinezmencias.eventscheduler.data.repository.RegionRepository
 import com.martinezmencias.eventscheduler.data.database.EventRoomDataSource
+import com.martinezmencias.eventscheduler.data.database.VenueDao
 import com.martinezmencias.eventscheduler.data.datasource.LocationDataSource
 import com.martinezmencias.eventscheduler.data.location.PlayServicesLocationDataSource
 import com.martinezmencias.eventscheduler.data.permissions.AndroidPermissionChecker
@@ -53,6 +54,7 @@ val appModules = module {
     // Database
     single<EventDatabase> { EventDatabase.createDatabase(get()) }
     single<EventDao> { get<EventDatabase>().eventDao() }
+    single<VenueDao> { get<EventDatabase>().venueDao() }
 
     // Permissions
     singleOf(::AndroidPermissionChecker) { bind<PermissionChecker>() }

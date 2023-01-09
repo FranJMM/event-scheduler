@@ -8,5 +8,6 @@ data class Event(
     val imageUrl: String,
     val startTime: Date?,
     val salesUrl: String?,
-    val salesStartTime: Date?
+    val salesStartTime: Date?,
+    val venue: Venue
 )

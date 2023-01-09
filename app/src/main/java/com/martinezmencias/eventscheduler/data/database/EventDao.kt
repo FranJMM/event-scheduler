@@ -4,20 +4,25 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface EventDao {
 
-    @Query("SELECT * FROM Event")
-    fun getAll(): Flow<List<Event>>
+    @Transaction
+    @Query("SELECT * FROM EventBasicEntity")
+    fun getAll(): Flow<List<EventEntity>>
 
-    @Query("SELECT * FROM Event WHERE id = :id")
-    fun findById(id: String): Flow<Event>
+    @Transaction
+    @Query("SELECT * FROM EventBasicEntity WHERE id = :id")
+    fun findById(id: String): Flow<EventEntity>
 
-    @Query("SELECT COUNT(primaryId) FROM Event")
+    @Transaction
+    @Query("SELECT COUNT(primaryId) FROM EventBasicEntity")
     suspend fun eventCount(): Int
 
+    @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertEvents(events: List<Event>)
+    suspend fun insertEventsBasic(events: List<EventBasicEntity>)
 }

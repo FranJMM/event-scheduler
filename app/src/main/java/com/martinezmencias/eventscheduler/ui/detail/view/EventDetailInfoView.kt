@@ -26,6 +26,12 @@ class EventDetailInfoView @JvmOverloads constructor(
                 bold { append("Sales Event date: ") }
                 appendLine(salesStartTimeDate.convertToReadableText())
             }
+
+            event.venue?.let { venue ->
+                bold { append("Venue: ") }
+                appendLine(venue.name)
+                appendLine("${venue.address}, ${venue.city}, ${venue.state}, ${venue.country}")
+            }
         }
     }
 }

@@ -17,6 +17,7 @@ data class RemoteEvent(
     val dates: Dates?,
     @SerializedName("url")  val salesUrl: String?,
     @SerializedName("sales") val salesDates: SalesDates?,
+    @SerializedName("_embedded") val embeddedVenues: RemoteEmbeddedVenues?
 )
 
 data class RemoteImage(val url: String)
