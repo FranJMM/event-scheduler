@@ -2,6 +2,7 @@ package com.martinezmencias.eventscheduler.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity
 data class Event(
@@ -9,7 +10,7 @@ data class Event(
     val id: String,
     val name: String,
     val imageUrl: String,
-    val startTime: String?,
+    val startTime: Date?,
     val salesUrl: String?,
-    val salesStartTime: String?
+    val salesStartTime: Date?
 )

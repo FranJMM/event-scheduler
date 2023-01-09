@@ -17,8 +17,8 @@ fun Fragment.createListState(
     context: Context = requireContext(),
     scope: CoroutineScope = viewLifecycleOwner.lifecycleScope,
     navController: NavController = findNavController(),
-    locationPermissionRequester: PermissionRequester = PermissionRequester(this)
-) = ListState(context, scope, navController, locationPermissionRequester)
+    permissionRequester: PermissionRequester = PermissionRequester(this)
+) = ListState(context, scope, navController, permissionRequester)
 
 class ListState(
     private val context: Context,
@@ -37,6 +37,7 @@ class ListState(
             afterRequest(result)
         }
     }
+
     fun errorToString(error: Error) = when (error) {
         Error.Connectivity -> context.getString(R.string.connectivity_error)
         is Error.Server -> String.format(context.getString(R.string.server_error), error.code)

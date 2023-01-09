@@ -3,6 +3,7 @@ package com.martinezmencias.eventscheduler.data.server
 import arrow.core.Either
 import com.martinezmencias.eventscheduler.BuildConfig
 import com.martinezmencias.eventscheduler.data.datasource.EventRemoteDataSource
+import com.martinezmencias.eventscheduler.data.util.parseDate
 import com.martinezmencias.eventscheduler.data.util.tryCall
 import com.martinezmencias.eventscheduler.domain.Error
 import com.martinezmencias.eventscheduler.domain.Event
@@ -28,8 +29,8 @@ class EventServerDataSource(private val remoteService: RemoteService) : EventRem
             id = id,
             name = name,
             imageUrl = images.first().url,
-            startTime = dates?.start?.time,
+            startTime = dates?.start?.time.parseDate(),
             salesUrl = salesUrl,
-            salesStartTime = salesDates?.publicSales?.startTime,
+            salesStartTime = salesDates?.publicSales?.startTime.parseDate(),
         )
 }
