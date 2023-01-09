@@ -15,11 +15,15 @@ class EventDetailInfoView @JvmOverloads constructor(
 
     fun setEvent(event: Event) = event.apply {
         text = buildSpannedString {
-            bold { append("Event date: ") }
-            appendLine(event.startTime)
+            if (event.startTime != null) {
+                bold { append("Event date: ") }
+                appendLine(event.startTime)
+            }
 
-            bold { append("Event sales date: ") }
-            appendLine(event.salesStartTime)
+            if (event.salesStartTime != null) {
+                bold { append("Event sales date: ") }
+                appendLine(event.salesStartTime)
+            }
         }
     }
 }

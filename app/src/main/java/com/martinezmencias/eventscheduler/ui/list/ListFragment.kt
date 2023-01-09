@@ -21,12 +21,10 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private val adapter by lazy { EventsAdapter { event -> listState.onEventClicked(event)} }
 
-    private lateinit var listState: ListState
+    private val listState: ListState by lazy { this.createListState() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        listState = this.createListState()
 
         val binding = FragmentListBinding.bind(view).apply {
             recycler.adapter = adapter

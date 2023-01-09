@@ -15,15 +15,16 @@ data class RemoteEvent(
     val name: String,
     val images: List<RemoteImage>,
     val dates: Dates?,
-    val sales: Sales?
+    @SerializedName("url")  val salesUrl: String?,
+    @SerializedName("sales") val salesDates: SalesDates?,
 )
 
 data class RemoteImage(val url: String)
 
 data class Dates(val start: Date?)
 
-data class Date(@SerializedName("dateTime")  val time: String)
+data class Date(@SerializedName("dateTime") val time: String)
 
-data class Sales(@SerializedName("public")  val publicSales: PublicSales?)
+data class SalesDates(@SerializedName("public") val publicSales: PublicSales?)
 
-data class PublicSales(@SerializedName("startDateTime")  val startTime: String)
+data class PublicSales(@SerializedName("startDateTime") val startTime: String)
