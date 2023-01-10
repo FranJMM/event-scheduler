@@ -1,7 +1,9 @@
 package com.martinezmencias.eventscheduler.data.database
 
+import com.martinezmencias.eventscheduler.data.database.Price as PriceDb
 import com.martinezmencias.eventscheduler.data.datasource.EventLocalDataSource
 import com.martinezmencias.eventscheduler.domain.Event
+import com.martinezmencias.eventscheduler.domain.Price
 import com.martinezmencias.eventscheduler.domain.Venue
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -29,7 +31,8 @@ private fun EventEntity.toDomainModel() =
         startTime = eventBasic.startTime,
         salesUrl = eventBasic.salesUrl,
         salesStartTime = eventBasic.salesStartTime,
-        venue = venue.toDomainModel()
+        venue = venue.toDomainModel(),
+        price = Price(eventBasic.price.min, eventBasic.price.max, eventBasic.price.currency)
     )
 
 private fun List<EventEntity>.toDomainModel() = this.map { it.toDomainModel() }
@@ -42,7 +45,8 @@ private fun Event.toEntityBasicModel() =
         startTime = startTime,
         salesUrl = salesUrl,
         salesStartTime = salesStartTime,
-        venueId = venue.id
+        venueId = venue.id,
+        price = PriceDb(price.min, price.max, price.currency)
     )
 
 private fun List<Event>.toEntityVenueModel() =

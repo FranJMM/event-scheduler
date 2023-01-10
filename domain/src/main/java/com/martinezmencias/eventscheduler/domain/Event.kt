@@ -9,5 +9,6 @@ data class Event(
     val startTime: Date?,
     val salesUrl: String?,
     val salesStartTime: Date?,
-    val venue: Venue
+    val venue: Venue,
+    val price: Price,
 )

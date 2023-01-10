@@ -1,9 +1,6 @@
 package com.martinezmencias.eventscheduler.data.database
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.Relation
+import androidx.room.*
 import java.util.*
 
 @Entity
@@ -25,5 +22,12 @@ data class EventBasicEntity(
     val startTime: Date?,
     val salesUrl: String?,
     val salesStartTime: Date?,
-    val venueId: String?
+    val venueId: String?,
+    @Embedded val price: Price
+)
+
+data class Price(
+    @ColumnInfo(name = "minPrice") val min: Float,
+    @ColumnInfo(name = "maxPrice") val max: Float,
+    @ColumnInfo(name = "currencyPrice") val currency: String
 )

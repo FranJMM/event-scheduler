@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import com.martinezmencias.eventscheduler.domain.Event
+import com.martinezmencias.eventscheduler.domain.Price
 
 class EventDetailInfoView @JvmOverloads constructor(
     context: Context,
@@ -21,6 +22,16 @@ class EventDetailInfoView @JvmOverloads constructor(
                 appendLine(venue.name)
                 appendLine("${venue.address}, ${venue.city}, ${venue.state}, ${venue.country}")
             }
+
+            bold { append("Price: ") }
+            appendLine(event.price.getPriceFormatted())
         }
     }
+
+    private fun Price.getPriceFormatted() =
+        if (min == max) {
+            "$min $currency"
+        } else {
+            "$min - $max $currency"
+        }
 }

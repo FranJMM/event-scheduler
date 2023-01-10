@@ -7,6 +7,7 @@ import com.martinezmencias.eventscheduler.data.util.parseDate
 import com.martinezmencias.eventscheduler.data.util.tryCall
 import com.martinezmencias.eventscheduler.domain.Error
 import com.martinezmencias.eventscheduler.domain.Event
+import com.martinezmencias.eventscheduler.domain.Price
 import com.martinezmencias.eventscheduler.domain.Venue
 
 class EventServerDataSource(private val remoteService: RemoteService) : EventRemoteDataSource {
@@ -33,7 +34,8 @@ class EventServerDataSource(private val remoteService: RemoteService) : EventRem
             startTime = dates?.start?.time.parseDate(),
             salesUrl = salesUrl,
             salesStartTime = salesDates?.publicSales?.startTime.parseDate(),
-            venue = embeddedVenues?.venues?.first()?.toDomainModel() ?: Venue("", "", "", "", "", "")
+            venue = embeddedVenues?.venues?.first()?.toDomainModel() ?: Venue("", "", "", "", "", ""),
+            price = prices?.find { it.type == "standard" }?.toDomainModel() ?: Price(0F, 0F, "")
         )
 
     private fun RemoteVenue.toDomainModel() =
@@ -45,4 +47,6 @@ class EventServerDataSource(private val remoteService: RemoteService) : EventRem
             state = state?.name ?: "",
             address = address?.line1 ?: ""
         )
+
+    private fun RemotePrice.toDomainModel() = Price(min = min, max = max, currency = currency)
 }

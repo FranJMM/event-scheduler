@@ -15,6 +15,7 @@ data class RemoteEvent(
     val name: String,
     val images: List<RemoteImage>,
     val dates: Dates?,
+    @SerializedName("priceRanges")  val prices: List<RemotePrice>?,
     @SerializedName("url")  val salesUrl: String?,
     @SerializedName("sales") val salesDates: SalesDates?,
     @SerializedName("_embedded") val embeddedVenues: RemoteEmbeddedVenues?
@@ -29,3 +30,5 @@ data class Date(@SerializedName("dateTime") val time: String)
 data class SalesDates(@SerializedName("public") val publicSales: PublicSales?)
 
 data class PublicSales(@SerializedName("startDateTime") val startTime: String)
+
+data class RemotePrice(val type: String, val min: Float, val max: Float, val currency: String)
