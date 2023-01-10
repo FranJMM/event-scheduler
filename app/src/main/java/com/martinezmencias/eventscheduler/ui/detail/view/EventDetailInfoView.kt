@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
-import com.martinezmencias.eventscheduler.data.util.convertToReadableText
 import com.martinezmencias.eventscheduler.domain.Event
 
 class EventDetailInfoView @JvmOverloads constructor(
@@ -17,17 +16,7 @@ class EventDetailInfoView @JvmOverloads constructor(
     fun setEvent(event: Event) = event.apply {
         text = buildSpannedString {
 
-            event.startTime?.let { startTimeDate ->
-                bold { append("Event date: ") }
-                appendLine(startTimeDate.convertToReadableText())
-            }
-
-            event.salesStartTime?.let { salesStartTimeDate ->
-                bold { append("Sales Event date: ") }
-                appendLine(salesStartTimeDate.convertToReadableText())
-            }
-
-            event.venue?.let { venue ->
+            event.venue.let { venue ->
                 bold { append("Venue: ") }
                 appendLine(venue.name)
                 appendLine("${venue.address}, ${venue.city}, ${venue.state}, ${venue.country}")

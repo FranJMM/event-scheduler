@@ -36,8 +36,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         state.event?.let { event ->
             Glide.with(eventImage).load(event.imageUrl).into(eventImage)
             eventNameText.text = event.name
-            eventAddToCalendarButton.setOnClickListener { detailState.addCalendarEvent(event) }
+            eventAddToCalendarButton.setOnClickListener {  }
             eventBuyTicketsButton.setBuyTicketsButton(event.salesUrl)
+            eventDetailDateEventView.setEventDate(event) { detailState.addCalendarEvent(event) }
+            eventDetailDateSalesView.setEventSalesDate(event) { detailState.addCalendarSales(event)}
             eventDetailInfoView.setEvent(event)
         }
     }
