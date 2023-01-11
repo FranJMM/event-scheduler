@@ -11,4 +11,5 @@ data class Event(
     val salesStartTime: Date?,
     val venue: Venue,
     val price: Price,
+    val favorite: Boolean = false
 )

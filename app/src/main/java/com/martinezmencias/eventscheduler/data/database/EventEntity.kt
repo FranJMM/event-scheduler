@@ -15,15 +15,15 @@ data class EventEntity(
 
 @Entity
 data class EventBasicEntity(
-    @PrimaryKey(autoGenerate = true) val primaryId: Int = 0,
-    val id: String,
+    @PrimaryKey val id: String,
     val name: String,
     val imageUrl: String,
     val startTime: Date?,
     val salesUrl: String?,
     val salesStartTime: Date?,
     val venueId: String?,
-    @Embedded val price: Price
+    @Embedded val price: Price,
+    val favorite: Boolean
 )
 
 data class Price(

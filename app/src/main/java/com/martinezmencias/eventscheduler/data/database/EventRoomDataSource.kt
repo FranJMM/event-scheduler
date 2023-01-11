@@ -21,6 +21,9 @@ class EventRoomDataSource(private val eventDao: EventDao, private val venueDao: 
         venueDao.insertVenues(events.toEntityVenueModel())
         eventDao.insertEventsBasic(events.toEntityBasicModel())
     }
+
+    override suspend fun updateEvent(event: Event) =
+        eventDao.updateEventBasic(event.toEntityBasicModel())
 }
 
 private fun EventEntity.toDomainModel() =
@@ -32,7 +35,8 @@ private fun EventEntity.toDomainModel() =
         salesUrl = eventBasic.salesUrl,
         salesStartTime = eventBasic.salesStartTime,
         venue = venue.toDomainModel(),
-        price = Price(eventBasic.price.min, eventBasic.price.max, eventBasic.price.currency)
+        price = Price(eventBasic.price.min, eventBasic.price.max, eventBasic.price.currency),
+        favorite = eventBasic.favorite
     )
 
 private fun List<EventEntity>.toDomainModel() = this.map { it.toDomainModel() }
@@ -46,7 +50,8 @@ private fun Event.toEntityBasicModel() =
         salesUrl = salesUrl,
         salesStartTime = salesStartTime,
         venueId = venue.id,
-        price = PriceDb(price.min, price.max, price.currency)
+        price = PriceDb(price.min, price.max, price.currency),
+        favorite = favorite
     )
 
 private fun List<Event>.toEntityVenueModel() =

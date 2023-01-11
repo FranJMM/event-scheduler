@@ -13,4 +13,6 @@ interface EventLocalDataSource {
     suspend fun isEmpty(): Boolean
 
     suspend fun saveEvents(events: List<Event>)
+
+    suspend fun updateEvent(event: Event)
 }

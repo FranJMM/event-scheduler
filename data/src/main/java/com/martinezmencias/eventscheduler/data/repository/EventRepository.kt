@@ -3,6 +3,7 @@ package com.martinezmencias.eventscheduler.data.repository
 import com.martinezmencias.eventscheduler.data.datasource.EventLocalDataSource
 import com.martinezmencias.eventscheduler.data.datasource.EventRemoteDataSource
 import com.martinezmencias.eventscheduler.domain.Error
+import com.martinezmencias.eventscheduler.domain.Event
 
 class EventRepository(
     private val regionRepository: RegionRepository,
@@ -24,5 +25,10 @@ class EventRepository(
             })
         }
         return null
+    }
+
+    suspend fun switchFavorite(event: Event) {
+        val updatedEvent = event.copy(favorite = !event.favorite)
+        localDataSource.updateEvent(updatedEvent)
     }
 }

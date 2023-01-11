@@ -4,12 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.martinezmencias.eventscheduler.domain.Event
 import com.martinezmencias.eventscheduler.usecases.FindEventUseCase
+import com.martinezmencias.eventscheduler.usecases.SwitchEventFavoriteUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
     private val eventId: String,
-    private val findEventUseCase: FindEventUseCase
+    private val findEventUseCase: FindEventUseCase,
+    private val switchEventFavoriteUseCase: SwitchEventFavoriteUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
@@ -21,6 +23,14 @@ class DetailViewModel(
         viewModelScope.launch {
             findEventUseCase(eventId).collect() { event ->
                 _state.update { UiState(event) }
+            }
+        }
+    }
+
+    fun onFavoriteClicked() {
+        viewModelScope.launch {
+            state.value.event?.let { event ->
+                switchEventFavoriteUseCase(event)
             }
         }
     }

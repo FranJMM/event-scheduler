@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.martinezmencias.eventscheduler.R
 import com.martinezmencias.eventscheduler.databinding.FragmentDetailBinding
+import com.martinezmencias.eventscheduler.domain.Event
 import com.martinezmencias.eventscheduler.ui.common.launchAndCollect
 import com.martinezmencias.eventscheduler.ui.util.setVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -30,25 +32,34 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         viewLifecycleOwner.launchAndCollect(viewModel.state) { state ->
             binding.handleUiState(state)
         }
+
+        binding.eventFavoriteButton.setOnClickListener { viewModel.onFavoriteClicked()  }
     }
 
     private fun FragmentDetailBinding.handleUiState(state: DetailViewModel.UiState) {
         state.event?.let { event ->
             Glide.with(eventImage).load(event.imageUrl).into(eventImage)
             eventNameText.text = event.name
-            eventAddToCalendarButton.setOnClickListener {  }
-            eventBuyTicketsButton.setBuyTicketsButton(event.salesUrl)
+            eventFavoriteButton.updateFavoriteButton(event)
+            eventBuyTicketsButton.updatetBuyTicketsButton(event)
             eventDetailDateEventView.setEventDate(event) { detailState.addCalendarEvent(event) }
             eventDetailDateSalesView.setEventSalesDate(event) { detailState.addCalendarSales(event)}
             eventDetailInfoView.setEvent(event)
         }
     }
 
-    private fun Button.setBuyTicketsButton(salesUrl: String?) {
-        if (salesUrl != null) {
+    private fun Button.updatetBuyTicketsButton(event: Event) {
+        event.salesUrl?.let { salesUrl ->
             setOnClickListener { detailState.openBuyTicketsUrl(salesUrl) }
+        } ?: setVisible(false)
+    }
+
+    private fun FloatingActionButton.updateFavoriteButton(event: Event) {
+        val favoriteResource = if (event.favorite) {
+            R.drawable.ic_favorite_on
         } else {
-            setVisible(false)
+            R.drawable.ic_favorite_off
         }
+        setImageResource(favoriteResource)
     }
 }

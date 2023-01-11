@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.martinezmencias.eventscheduler.databinding.ViewEventBinding
 import com.martinezmencias.eventscheduler.domain.Event
+import com.martinezmencias.eventscheduler.ui.util.setVisible
 
 class EventsAdapter(private val listener: (Event) -> Unit) :
     ListAdapter<Event, EventsAdapter.ViewHolder>(basicDiffUtil { old, new ->
@@ -23,6 +24,7 @@ class EventsAdapter(private val listener: (Event) -> Unit) :
         val event = getItem(position)
         holder.binding.eventView.setOnClickListener { listener(event) }
         holder.binding.eventTitle.text = event.name
+        holder.binding.eventFavorite.setVisible(event.favorite)
         Glide.with(holder.binding.eventImage).load(event.imageUrl).into(holder.binding.eventImage)
     }
 

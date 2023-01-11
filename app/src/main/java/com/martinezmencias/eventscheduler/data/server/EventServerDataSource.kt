@@ -30,7 +30,7 @@ class EventServerDataSource(private val remoteService: RemoteService) : EventRem
         Event(
             id = id,
             name = name,
-            imageUrl = images.first().url,
+            imageUrl = images.find { it.ratio == "16_9" }?.url ?: "",
             startTime = dates?.start?.time.parseDate(),
             salesUrl = salesUrl,
             salesStartTime = salesDates?.publicSales?.startTime.parseDate(),

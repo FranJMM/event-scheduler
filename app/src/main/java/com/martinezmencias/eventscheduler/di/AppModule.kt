@@ -21,6 +21,7 @@ import com.martinezmencias.eventscheduler.ui.list.ListViewModel
 import com.martinezmencias.eventscheduler.usecases.FindEventUseCase
 import com.martinezmencias.eventscheduler.usecases.GetEventsUseCase
 import com.martinezmencias.eventscheduler.usecases.RequestEventsUseCase
+import com.martinezmencias.eventscheduler.usecases.SwitchEventFavoriteUseCase
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -32,12 +33,13 @@ val appModules = module {
 
     // ViewModel
     viewModelOf(::ListViewModel)
-    viewModel { (eventId: String) -> DetailViewModel(eventId = eventId, get()) }
+    viewModel { (eventId: String) -> DetailViewModel(eventId = eventId, get(), get()) }
 
     // UseCase
     singleOf(::RequestEventsUseCase)
     singleOf(::GetEventsUseCase)
     singleOf(::FindEventUseCase)
+    singleOf(::SwitchEventFavoriteUseCase)
 
     // Repository
     singleOf(::EventRepository)
