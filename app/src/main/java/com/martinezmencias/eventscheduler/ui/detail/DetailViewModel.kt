@@ -2,7 +2,9 @@ package com.martinezmencias.eventscheduler.ui.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.martinezmencias.eventscheduler.data.util.toError
 import com.martinezmencias.eventscheduler.domain.Event
+import com.martinezmencias.eventscheduler.domain.Error
 import com.martinezmencias.eventscheduler.usecases.FindEventUseCase
 import com.martinezmencias.eventscheduler.usecases.SwitchEventFavoriteUseCase
 import kotlinx.coroutines.flow.*
@@ -21,9 +23,11 @@ class DetailViewModel(
 
     init {
         viewModelScope.launch {
-            findEventUseCase(eventId).collect() { event ->
-                _state.update { UiState(event) }
-            }
+            findEventUseCase(eventId)
+                .catch { cause -> _state.update { it.copy(error = cause.toError()) } }
+                .collect() { event ->
+                    _state.update { UiState(event) }
+                }
         }
     }
 
