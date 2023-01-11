@@ -29,6 +29,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
         val binding = FragmentDetailBinding.bind(view)
 
+        binding.eventDetailToolbar.setNavigationOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
         viewLifecycleOwner.launchAndCollect(viewModel.state) { state ->
             binding.handleUiState(state)
         }
