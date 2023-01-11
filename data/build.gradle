@@ -11,6 +11,12 @@ dependencies {
 
     // Arrow
     implementation libs.arrow.core
+
+    // Tests
+
+    testImplementation project(":testShared")
+    testImplementation libs.junit
+    testImplementation libs.bundles.mockito
 }
 
 java {
