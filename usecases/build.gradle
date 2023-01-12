@@ -14,4 +14,9 @@ dependencies {
     implementation project(":domain")
 
     implementation libs.bundles.coroutines
+
+    // Tests
+    testImplementation project(":testShared")
+    testImplementation libs.junit
+    testImplementation libs.bundles.mockito
 }
