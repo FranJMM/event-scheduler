@@ -73,7 +73,12 @@ dependencies {
     implementation libs.arrow.core
 
     // Testing
+    testImplementation project(":testShared")
     testImplementation libs.junit
+    testImplementation libs.bundles.mockito
+    testImplementation libs.bundles.coroutines
+    testImplementation libs.turbine
+
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.androidx.test.espresso.core
 }
