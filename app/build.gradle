@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.martinezmencias.eventscheduler"
-        minSdk 23
+        minSdk 24
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -74,11 +74,13 @@ dependencies {
 
     // Testing
     testImplementation project(":testShared")
+    testImplementation project(":appTestShared")
     testImplementation libs.junit
     testImplementation libs.bundles.mockito
     testImplementation libs.bundles.coroutines
     testImplementation libs.turbine
 
+    androidTestImplementation project(":appTestShared")
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.androidx.test.espresso.core
 }

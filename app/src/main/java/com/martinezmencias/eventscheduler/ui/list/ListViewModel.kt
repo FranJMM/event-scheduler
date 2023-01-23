@@ -6,6 +6,7 @@ import com.martinezmencias.eventscheduler.data.util.toError
 import com.martinezmencias.eventscheduler.usecases.GetEventsUseCase
 import com.martinezmencias.eventscheduler.usecases.RequestEventsUseCase
 import com.martinezmencias.eventscheduler.domain.Error
+import com.martinezmencias.eventscheduler.domain.Event
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -35,7 +36,7 @@ class ListViewModel(
     }
 
     data class UiState(
-        val events: List<com.martinezmencias.eventscheduler.domain.Event>? = null,
+        val events: List<Event>? = null,
         val error: Error? = null
     )
 }
