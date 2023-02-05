@@ -13,7 +13,7 @@ dependencies {
     implementation project(":data")
     implementation project(":domain")
 
-    implementation libs.bundles.coroutines
+    implementation libs.coroutines.core
 
     // Tests
     testImplementation project(":testShared")

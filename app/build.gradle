@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.martinezmencias.eventscheduler.di.KoinTestRunner"
 
         buildConfigField('String', 'API_KEY', "\"${apikey}\"")
         buildConfigField('String', 'ENDPOINT', "\"${endpoint}\"")
@@ -60,7 +60,7 @@ dependencies {
     implementation libs.playservices.location
 
     // Koin
-    implementation libs.bundles.koin
+    implementation libs.koin.android
 
     // Retrofit & OkHttpClient
     implementation libs.bundles.retrofit
@@ -77,10 +77,14 @@ dependencies {
     testImplementation project(":appTestShared")
     testImplementation libs.junit
     testImplementation libs.bundles.mockito
-    testImplementation libs.bundles.coroutines
+    testImplementation libs.coroutines.test
     testImplementation libs.turbine
 
     androidTestImplementation project(":appTestShared")
-    androidTestImplementation libs.androidx.test.ext.junit
-    androidTestImplementation libs.androidx.test.espresso.core
+    implementation libs.androidx.test.ext.junit
+    implementation libs.androidx.test.espresso.contrib
+    androidTestImplementation libs.androidx.test.runner
+    androidTestImplementation libs.androidx.test.rules
+    androidTestImplementation libs.coroutines.test
+    implementation libs.koin.test
 }

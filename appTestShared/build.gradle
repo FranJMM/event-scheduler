@@ -34,5 +34,5 @@ dependencies {
     implementation project(":app")
     implementation project(":data")
 
-    implementation libs.bundles.coroutines
+    implementation libs.coroutines.core
 }

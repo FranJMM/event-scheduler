@@ -3,11 +3,10 @@ package com.martinezmencias.eventscheduler.appTestShared
 import com.martinezmencias.eventscheduler.data.PermissionChecker
 import com.martinezmencias.eventscheduler.data.database.*
 import com.martinezmencias.eventscheduler.data.datasource.LocationDataSource
-import com.martinezmencias.eventscheduler.data.server.RemoteEmbedded
-import com.martinezmencias.eventscheduler.data.server.RemoteEvent
 import com.martinezmencias.eventscheduler.data.server.RemoteResult
 import com.martinezmencias.eventscheduler.data.server.RemoteService
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class FakeEventDao(
     eventsBasic: List<EventBasicEntity> = emptyList(),

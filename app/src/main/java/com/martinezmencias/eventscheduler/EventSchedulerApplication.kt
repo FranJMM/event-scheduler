@@ -1,7 +1,7 @@
 package com.martinezmencias.eventscheduler
 
 import android.app.Application
-import com.martinezmencias.eventscheduler.di.appModules
+import com.martinezmencias.eventscheduler.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -14,7 +14,7 @@ class EventSchedulerApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@EventSchedulerApplication)
-            modules(appModules)
+            modules(appModule)
         }
     }
 }
