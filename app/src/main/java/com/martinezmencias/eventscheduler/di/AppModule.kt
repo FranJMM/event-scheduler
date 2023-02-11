@@ -27,7 +27,11 @@ import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
+
+val NAMED_APIKEY = named("NAMED_APIKEY")
+val NAMED_ENDPOINT = named("NAMED_ENDPOINT")
 
 val appModule = module {
 
@@ -46,11 +50,13 @@ val appModule = module {
     singleOf(::RegionRepository)
 
     // DataSource
-    singleOf(::EventServerDataSource) { bind<EventRemoteDataSource>() }
+    single<String>(NAMED_APIKEY) { BuildConfig.API_KEY }
+    single<EventRemoteDataSource> { EventServerDataSource(get(NAMED_APIKEY), get()) }
     singleOf(::EventRoomDataSource) { bind<EventLocalDataSource>() }
 
     // Connection
-    single<RemoteService> { RemoteConnection.createRemoteService(BuildConfig.ENDPOINT, get()) }
+    single<String>(NAMED_ENDPOINT) { BuildConfig.ENDPOINT }
+    single<RemoteService> { RemoteConnection.createRemoteService(get(NAMED_ENDPOINT), get()) }
     single<OkHttpClient> { RemoteConnection.createOkHttpClient() }
 
     // Database

@@ -10,11 +10,14 @@ import com.martinezmencias.eventscheduler.domain.Event
 import com.martinezmencias.eventscheduler.domain.Price
 import com.martinezmencias.eventscheduler.domain.Venue
 
-class EventServerDataSource(private val remoteService: RemoteService) : EventRemoteDataSource {
+class EventServerDataSource(
+    private val apiKey: String,
+    private val remoteService: RemoteService
+) : EventRemoteDataSource {
 
     override suspend fun requestEvents(region: String): Either<Error, List<Event>> = tryCall {
         remoteService.requestEvents(
-            apiKey = BuildConfig.API_KEY,
+            apiKey = apiKey,
             countryCode = region,
             classificationName = "music"
         ).toDomainModel()

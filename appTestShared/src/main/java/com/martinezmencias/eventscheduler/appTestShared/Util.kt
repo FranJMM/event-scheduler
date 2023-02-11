@@ -84,5 +84,5 @@ fun buildEventRoomDataSource(
 
 fun buildEventRemoteDataSource(remoteData: List<RemoteEvent>): EventRemoteDataSource {
     val remoteResult = RemoteResult(embedded = RemoteEmbedded(events = remoteData))
-    return EventServerDataSource(FakeRemoteService(remoteResult))
+    return EventServerDataSource("1234", FakeRemoteService(remoteResult))
 }
