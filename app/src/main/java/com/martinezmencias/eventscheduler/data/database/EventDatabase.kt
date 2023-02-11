@@ -16,6 +16,11 @@ abstract class EventDatabase : RoomDatabase() {
             EventDatabase::class.java,
             "event-db"
         ).build()
+
+        fun createDatabaseForTests(application: Application) = Room.inMemoryDatabaseBuilder(
+            application,
+            EventDatabase::class.java
+        ).build()
     }
 
     abstract fun eventDao(): EventDao

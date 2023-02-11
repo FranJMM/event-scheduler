@@ -87,4 +87,5 @@ dependencies {
     androidTestImplementation libs.androidx.test.rules
     androidTestImplementation libs.coroutines.test
     implementation libs.koin.test
+    androidTestImplementation libs.okttp3.mockwebserver
 }

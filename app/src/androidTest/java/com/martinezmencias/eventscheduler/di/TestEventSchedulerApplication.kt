@@ -9,7 +9,7 @@ class TestEventSchedulerApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@TestEventSchedulerApplication)
-            modules(appModule)
+            modules(appModule, testAppModule)
         }
     }
 }
