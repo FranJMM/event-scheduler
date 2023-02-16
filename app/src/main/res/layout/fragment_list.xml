@@ -10,9 +10,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        app:statusBarForeground="?attr/colorPrimaryVariant"
-        android:theme="@style/AppTheme.DarkOverlay">
+        android:fitsSystemWindows="true">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"

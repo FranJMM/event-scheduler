@@ -4,6 +4,7 @@
     <string name="connectivity_error">Se ha producido un problema con la conexión de red</string>
     <string name="server_error">Se ha producido un problema el servicio: %s</string>
     <string name="unknown_error">Se ha producido un error desconocido: %s</string>
+    <string name="tickets">Entradas</string>
     <string name="buy_tickets">Comprar entradas</string>
     <string name="date_not_available">Fecha no disponible</string>
 </resources>

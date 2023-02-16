@@ -28,6 +28,7 @@
             android:id="@+id/event_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
             android:textAppearance="?attr/textAppearanceBody1"
             android:textColor="?android:textColorPrimary"/>
         <TextView
@@ -35,11 +36,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody1"
-            android:textColor="?android:textColorPrimary"/>
-        <ImageView
-            android:id="@+id/event_favorite"
-            android:layout_width="wrap_content"
+            android:textColor="?android:textColorPrimary" />
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_favorite_on" />
+            android:layout_marginTop="@dimen/spacing_small">
+            <Button
+                android:id="@+id/event_tickets_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tickets"/>
+            <ImageView
+                android:id="@+id/event_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_favorite_on" />
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

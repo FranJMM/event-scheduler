@@ -23,10 +23,10 @@ class EventsAdapter(private val listener: (Event) -> Unit) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val event = getItem(position)
-        holder.binding.eventView.setOnClickListener { listener(event) }
         holder.binding.eventTitle.text = event.name
         holder.binding.eventDate.text = event.startTime.toReadableDate()
         holder.binding.eventLocation.text = event.venue.city
+        holder.binding.eventTicketsButton.setOnClickListener { listener(event) }
         holder.binding.eventFavorite.setVisible(event.favorite)
         Glide.with(holder.binding.eventImage).load(event.imageUrl).into(holder.binding.eventImage)
     }
