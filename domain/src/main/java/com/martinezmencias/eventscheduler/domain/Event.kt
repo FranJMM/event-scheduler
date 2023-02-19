@@ -1,14 +1,12 @@
 package com.martinezmencias.eventscheduler.domain
 
-import java.util.Date
-
 data class Event(
     val id: String,
     val name: String,
     val imageUrl: String,
-    val startTime: Date?,
+    val startDateAndTime: DateAndTime?,
     val salesUrl: String?,
-    val salesStartTime: Date?,
+    val salesDateAndTime: DateAndTime?,
     val venue: Venue,
     val price: Price,
     val favorite: Boolean = false

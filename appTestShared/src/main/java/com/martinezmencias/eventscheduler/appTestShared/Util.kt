@@ -51,14 +51,14 @@ fun buildRemoteImages() = listOf(
     RemoteImage(url = "http://images.remoteserver.com/image4.png", ratio = "16_9", width = 2048, height = 1152)
 )
 
-fun buildDates() = Dates(Date(time = "2023-05-16T22:00:00Z"))
+fun buildDates() = Dates(start = Start(localDate = "2023-04-15", localTime = "16:00:00"))
 
 fun buildRemotePrices() = listOf(
     RemotePrice(type = "standard", min = 1F, max = 2F, currency = "EUR"),
     RemotePrice(type = "standard including fees ", min = 10F, max = 20F, currency = "EUR")
 )
 
-fun buildSalesDates() = SalesDates(publicSales = PublicSales(startTime = "2023-05-16T22:00:00Z"))
+fun buildSalesDates() = SalesDates(publicSales = PublicSales(startDateTime = "2023-05-16T22:00:00Z"))
 
 fun buildEmbeddedRemoteVenues() = RemoteEmbeddedVenues(venues = buildRemoteVenues())
 

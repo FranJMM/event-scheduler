@@ -4,6 +4,8 @@ import arrow.core.Either
 import com.martinezmencias.eventscheduler.BuildConfig
 import com.martinezmencias.eventscheduler.data.datasource.EventRemoteDataSource
 import com.martinezmencias.eventscheduler.data.util.parseDate
+import com.martinezmencias.eventscheduler.data.util.parseStart
+import com.martinezmencias.eventscheduler.data.util.parseStartDateTime
 import com.martinezmencias.eventscheduler.data.util.tryCall
 import com.martinezmencias.eventscheduler.domain.Error
 import com.martinezmencias.eventscheduler.domain.Event
@@ -34,9 +36,9 @@ class EventServerDataSource(
             id = id,
             name = name,
             imageUrl = images.filter { it.ratio == "16_9" }.maxByOrNull { it.width }?.url ?: "",
-            startTime = dates?.start?.time.parseDate(),
+            startDateAndTime = dates?.start?.parseStart(),
             salesUrl = salesUrl,
-            salesStartTime = salesDates?.publicSales?.startTime.parseDate(),
+            salesDateAndTime = salesDates?.publicSales?.startDateTime?.parseStartDateTime(),
             venue = embeddedVenues?.venues?.first()?.toDomainModel() ?: Venue("", "", "", "", "", ""),
             price = prices?.find { it.type == "standard" }?.toDomainModel() ?: Price(0F, 0F, "")
         )

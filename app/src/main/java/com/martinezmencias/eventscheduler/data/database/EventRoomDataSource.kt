@@ -2,6 +2,7 @@ package com.martinezmencias.eventscheduler.data.database
 
 import com.martinezmencias.eventscheduler.data.database.Price as PriceDb
 import com.martinezmencias.eventscheduler.data.datasource.EventLocalDataSource
+import com.martinezmencias.eventscheduler.domain.DateAndTime
 import com.martinezmencias.eventscheduler.domain.Event
 import com.martinezmencias.eventscheduler.domain.Price
 import com.martinezmencias.eventscheduler.domain.Venue
@@ -31,9 +32,9 @@ private fun EventEntity.toDomainModel() =
         id = eventBasic.id,
         name = eventBasic.name,
         imageUrl = eventBasic.imageUrl,
-        startTime = eventBasic.startTime,
+        startDateAndTime = eventBasic.startDateAndTime.toDomainModel(),
         salesUrl = eventBasic.salesUrl,
-        salesStartTime = eventBasic.salesStartTime,
+        salesDateAndTime = eventBasic.salesDateAndTime.toDomainModel(),
         venue = venue.toDomainModel(),
         price = Price(eventBasic.price.min, eventBasic.price.max, eventBasic.price.currency),
         favorite = eventBasic.favorite
@@ -46,9 +47,9 @@ private fun Event.toEntityBasicModel() =
         id = id,
         name = name,
         imageUrl = imageUrl,
-        startTime = startTime,
+        startDateAndTime = startDateAndTime.toStartDateAndTimeEntityModel(),
         salesUrl = salesUrl,
-        salesStartTime = salesStartTime,
+        salesDateAndTime = salesDateAndTime.toSalesDateAndTimeEntityModel(),
         venueId = venue.id,
         price = PriceDb(price.min, price.max, price.currency),
         favorite = favorite
@@ -78,3 +79,19 @@ private fun VenueEntity.toDomainModel() = Venue(
     country = country,
     address = address
 )
+
+private fun DateAndTime?.toStartDateAndTimeEntityModel(): StartDateAndTime? = this?.let { dateAndTime ->
+    StartDateAndTime(startDate = dateAndTime.date, startTime = dateAndTime.time)
+}
+
+private fun DateAndTime?.toSalesDateAndTimeEntityModel(): SalesDateAndTime? = this?.let { dateAndTime ->
+    SalesDateAndTime(salesDate = dateAndTime.date, salesTime = dateAndTime.time)
+}
+
+private fun StartDateAndTime?.toDomainModel(): DateAndTime? = this?.let { startDateAndTime ->
+    DateAndTime(date = startDateAndTime.startDate, time = startDateAndTime.startTime)
+}
+
+private fun SalesDateAndTime?.toDomainModel(): DateAndTime? = this?.let { salesDateAndTime ->
+    DateAndTime(date = salesDateAndTime.salesDate, time = salesDateAndTime.salesTime)
+}

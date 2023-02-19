@@ -46,8 +46,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             eventNameText.text = event.name
             eventFavoriteButton.updateFavoriteButton(event)
             eventBuyTicketsButton.updatetBuyTicketsButton(event)
-            eventDetailDateEventView.setEventDate(event) { detailState.addCalendarEvent(event) }
-            eventDetailDateSalesView.setEventSalesDate(event) { detailState.addCalendarSales(event)}
+            eventDetailDateEventView.setEventDateAndTime(event) { detailState.addCalendarEvent(event) }
+            eventDetailDateSalesView.setEventSalesDateAndTime(event) { detailState.addCalendarSales(event)}
             eventDetailInfoView.setEvent(event)
         }
     }

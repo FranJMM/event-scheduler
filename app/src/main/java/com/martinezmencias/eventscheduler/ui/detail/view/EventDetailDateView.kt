@@ -4,10 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import com.martinezmencias.eventscheduler.R
-import com.martinezmencias.eventscheduler.data.util.convertToReadableText
 import com.martinezmencias.eventscheduler.databinding.ViewDetailDateBinding
 import com.martinezmencias.eventscheduler.domain.Event
-import java.util.*
+import com.martinezmencias.eventscheduler.ui.util.toReadableDateAndTime
 
 class EventDetailDateView @JvmOverloads constructor(
     context: Context,
@@ -22,15 +21,15 @@ class EventDetailDateView @JvmOverloads constructor(
         binding = ViewDetailDateBinding.bind(view)
     }
 
-    fun setEventDate(event: Event, action:() -> Unit) {
+    fun setEventDateAndTime(event: Event, action:() -> Unit) {
         binding.dateTitle.text = "Date"
-        binding.dateValue.text = event.startTime?.convertToReadableText()
+        binding.dateValue.text = event.startDateAndTime?.toReadableDateAndTime()
         binding.dateChip.setOnClickListener { action() }
     }
 
-    fun setEventSalesDate(event: Event, action:() -> Unit) {
+    fun setEventSalesDateAndTime(event: Event, action:() -> Unit) {
         binding.dateTitle.text = "Sales"
-        binding.dateValue.text = event.salesStartTime?.convertToReadableText()
+        binding.dateValue.text = event.salesDateAndTime?.toReadableDateAndTime()
         binding.dateChip.setOnClickListener { action() }
     }
 }

@@ -23,12 +23,12 @@ data class RemoteEvent(
 
 data class RemoteImage(val url: String, val ratio: String, val width: Int, val height: Int)
 
-data class Dates(val start: Date?)
+data class Dates(val start: Start?)
 
-data class Date(@SerializedName("dateTime") val time: String)
+data class Start(val localDate: String?, val localTime: String?)
 
 data class SalesDates(@SerializedName("public") val publicSales: PublicSales?)
 
-data class PublicSales(@SerializedName("startDateTime") val startTime: String)
+data class PublicSales(val startDateTime: String)
 
 data class RemotePrice(val type: String, val min: Float, val max: Float, val currency: String)

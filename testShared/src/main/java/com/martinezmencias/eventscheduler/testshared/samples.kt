@@ -1,5 +1,6 @@
 package com.martinezmencias.eventscheduler.testshared
 
+import com.martinezmencias.eventscheduler.domain.DateAndTime
 import com.martinezmencias.eventscheduler.domain.Event
 import com.martinezmencias.eventscheduler.domain.Price
 import com.martinezmencias.eventscheduler.domain.Venue
@@ -24,9 +25,9 @@ val sampleEvent = Event(
     id = "ID",
     name = "Name",
     imageUrl = "URL",
-    startTime = Date(),
+    startDateAndTime = DateAndTime(date = "", time = ""),
     salesUrl = "URL",
-    salesStartTime = Date(),
+    salesDateAndTime = DateAndTime(date = "", time = ""),
     venue = sampleVenue,
     price =  samplePrice,
     favorite = false

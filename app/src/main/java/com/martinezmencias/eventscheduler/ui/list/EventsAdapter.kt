@@ -24,7 +24,7 @@ class EventsAdapter(private val listener: (Event) -> Unit) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val event = getItem(position)
         holder.binding.eventTitle.text = event.name
-        holder.binding.eventDate.text = event.startTime.toReadableDate()
+        holder.binding.eventDate.text = event.startDateAndTime.toReadableDate()
         holder.binding.eventLocation.text = event.venue.city
         holder.binding.eventTicketsButton.setOnClickListener { listener(event) }
         holder.binding.eventFavorite.setVisible(event.favorite)

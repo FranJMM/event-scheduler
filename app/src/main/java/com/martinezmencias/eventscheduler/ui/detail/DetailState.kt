@@ -6,6 +6,7 @@ import android.net.Uri
 import android.provider.CalendarContract
 import androidx.fragment.app.Fragment
 import com.martinezmencias.eventscheduler.domain.Event
+import com.martinezmencias.eventscheduler.ui.util.toDate
 import java.util.*
 
 fun Fragment.createDetailState(
@@ -22,22 +23,22 @@ class DetailState(private val context: Context) {
     }
 
     fun addCalendarEvent(event: Event?) {
-        event?.startTime?.let {
-            addCalendarDate(event.name, it)
+        event?.startDateAndTime.toDate()?.let {
+            addCalendarDate(event?.name!!, it)
         }
     }
 
     fun addCalendarSales(event: Event?) {
-        event?.salesStartTime?.let {
-            addCalendarDate("Venta de entradas: ${event.name}", it)
+        event?.salesDateAndTime.toDate()?.let {
+            addCalendarDate(event?.name!!, it)
         }
     }
 
-    private fun addCalendarDate(title: String, date: Date) {
-        val intent = Intent(Intent.ACTION_INSERT)
-            .setData(CalendarContract.Events.CONTENT_URI)
-            .putExtra(CalendarContract.Events.TITLE, title)
-            .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, date.time)
-        context.startActivity(intent)
-    }
+private fun addCalendarDate(title: String, date: Date) {
+val intent = Intent(Intent.ACTION_INSERT)
+    .setData(CalendarContract.Events.CONTENT_URI)
+    .putExtra(CalendarContract.Events.TITLE, title)
+    .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, date.time)
+context.startActivity(intent)
+}
 }
