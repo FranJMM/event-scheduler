@@ -30,8 +30,10 @@
         android:id="@+id/error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        android:layout_gravity="center"
+        android:padding="@dimen/spacing"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
         android:textColor="?attr/colorError"
+        android:textAlignment="center"
         android:visibility="gone"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
