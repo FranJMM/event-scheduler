@@ -30,13 +30,15 @@ class ListViewModel(
 
     fun onUiReady() {
         viewModelScope.launch {
+            _state.value = _state.value.copy(loading = true)
             val result = requestEventsUseCase()
-            _state.update { state.value.copy(error = result)  }
+            _state.update { state.value.copy(loading = false, error = result)  }
         }
     }
 
     data class UiState(
         val events: List<Event>? = null,
+        val loading: Boolean = false,
         val error: Error? = null
     )
 }

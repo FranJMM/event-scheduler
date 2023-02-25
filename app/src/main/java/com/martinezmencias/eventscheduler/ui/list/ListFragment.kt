@@ -43,6 +43,8 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         adapter.submitList(state.events)
         recycler.setVisible(state.error == null)
 
+        loading.setVisible(state.loading)
+
         error.text = state.error?.let { listState.errorToString(it) }
         error.setVisible(state.error != null)
     }
