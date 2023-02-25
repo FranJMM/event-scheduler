@@ -22,13 +22,13 @@ class EventDetailDateView @JvmOverloads constructor(
     }
 
     fun setEventDateAndTime(event: Event, action:() -> Unit) {
-        binding.dateTitle.text = "Date"
+        binding.dateTitle.text = resources.getString(R.string.event_date)
         binding.dateValue.text = event.startDateAndTime?.toReadableDateAndTime()
         binding.dateChip.setOnClickListener { action() }
     }
 
     fun setEventSalesDateAndTime(event: Event, action:() -> Unit) {
-        binding.dateTitle.text = "Sales"
+        binding.dateTitle.text = resources.getString(R.string.sales_date)
         binding.dateValue.text = event.salesDateAndTime?.toReadableDateAndTime()
         binding.dateChip.setOnClickListener { action() }
     }

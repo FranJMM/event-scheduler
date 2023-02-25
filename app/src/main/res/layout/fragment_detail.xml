@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:navigationIcon="@drawable/ic_arrow_back"
-                app:title="Detail" />
+                app:title="@string/event_detail" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="@dimen/spacing">
 
                 <TextView
                     android:id="@+id/event_name_text"
@@ -58,30 +58,29 @@
                     android:id="@+id/event_buy_tickets_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing"
                     android:gravity="center"
                     android:text="@string/buy_tickets" />
-
 
                 <com.martinezmencias.eventscheduler.ui.detail.view.EventDetailDateView
                     android:id="@+id/event_detail_date_event_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing"
                     android:background="?attr/colorSurface" />
 
                 <com.martinezmencias.eventscheduler.ui.detail.view.EventDetailDateView
                     android:id="@+id/event_detail_date_sales_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing"
                     android:background="?attr/colorSurface" />
 
                 <com.martinezmencias.eventscheduler.ui.detail.view.EventDetailInfoView
                     android:id="@+id/event_detail_info_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing"
                     android:background="?attr/colorSurface"
                     android:lineSpacingMultiplier="1.5"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -95,9 +94,10 @@
         android:id="@+id/event_favorite_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/spacing"
         android:src="@drawable/ic_favorite_off"
         android:contentDescription="favorite"
         app:layout_anchor="@id/event_image"
-        app:layout_anchorGravity="bottom|end"/>
+        app:layout_anchorGravity="bottom|end"
+        android:backgroundTint="?attr/colorPrimary" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

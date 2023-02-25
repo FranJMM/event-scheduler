@@ -11,8 +11,7 @@
             android:id="@+id/date_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"/>
+            android:textAppearance="?attr/textAppearanceHeadline6" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,14 +20,13 @@
                 android:id="@+id/date_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+                android:textAppearance="?attr/textAppearanceBody1"/>
             <com.google.android.material.chip.Chip
                 android:id="@+id/date_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="Add"
-                android:textStyle="bold"/>
+                android:layout_marginStart="@dimen/spacing"
+                android:text="@string/add_date" />
         </LinearLayout>
 
     </LinearLayout>

@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
+import com.martinezmencias.eventscheduler.R
 import com.martinezmencias.eventscheduler.domain.Event
 import com.martinezmencias.eventscheduler.domain.Price
 
@@ -18,12 +19,12 @@ class EventDetailInfoView @JvmOverloads constructor(
         text = buildSpannedString {
 
             event.venue.let { venue ->
-                bold { append("Venue: ") }
+                bold { append("${resources.getString(R.string.venue)}: ") }
                 appendLine(venue.name)
                 appendLine("${venue.address}, ${venue.city}, ${venue.state}, ${venue.country}")
             }
 
-            bold { append("Price: ") }
+            bold { append("${resources.getString(R.string.price)}: ") }
             appendLine(event.price.getPriceFormatted())
         }
     }

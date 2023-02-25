@@ -1,10 +1,16 @@
 <resources>
-    <string name="app_name">EventScheduler</string>
+    <string name="app_name" translatable="false">Ticketer</string>
 
-    <string name="connectivity_error">Se ha producido un problema con la conexión de red</string>
-    <string name="server_error">Se ha producido un problema el servicio: %s</string>
-    <string name="unknown_error">Se ha producido un error desconocido: %s</string>
-    <string name="tickets">Entradas</string>
-    <string name="buy_tickets">Comprar entradas</string>
-    <string name="date_not_available">Fecha no disponible</string>
+    <string name="connectivity_error">There was a problem with the network connection</string>
+    <string name="server_error">There was a problem with the service: %s</string>
+    <string name="unknown_error">There was an unknown problem: %s</string>
+    <string name="tickets">Tickets</string>
+    <string name="event_detail">Event detail</string>
+    <string name="buy_tickets">Buy tickets</string>
+    <string name="date_not_available">Date not available</string>
+    <string name="event_date">Date</string>
+    <string name="sales_date">Sales date</string>
+    <string name="add_date">Add</string>
+    <string name="venue">Venue</string>
+    <string name="price">Price</string>
 </resources>

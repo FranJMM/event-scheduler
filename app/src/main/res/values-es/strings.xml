@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ticketer</string>
+
+    <string name="connectivity_error">Se ha producido un problema con la conexión de red</string>
+    <string name="server_error">Se ha producido un problema el servicio: %s</string>
+    <string name="unknown_error">Se ha producido un error desconocido: %s</string>
+    <string name="tickets">Entradas</string>
+    <string name="event_detail">Detalle del evento</string>
+    <string name="buy_tickets">Comprar entradas</string>
+    <string name="date_not_available">Fecha no disponible</string>
+    <string name="event_date">Fecha</string>
+    <string name="sales_date">Venta de entradas</string>
+    <string name="add_date">Añadir</string>
+    <string name="venue">Lugar</string>
+    <string name="price">Precio</string>
+</resources>

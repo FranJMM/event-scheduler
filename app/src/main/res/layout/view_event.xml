@@ -45,12 +45,15 @@
                 android:id="@+id/event_tickets_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:text="@string/tickets"/>
             <ImageView
                 android:id="@+id/event_favorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_favorite_on" />
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_favorite_on"
+                android:layout_centerVertical="true" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
