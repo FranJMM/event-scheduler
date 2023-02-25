@@ -2,14 +2,14 @@ package com.martinezmencias.eventscheduler.ui.common
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatImageView
+import com.google.android.material.imageview.ShapeableImageView
 import com.martinezmencias.eventscheduler.R
 
 class AspectRatioImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : AppCompatImageView(context, attrs, defStyleAttr) {
+) : ShapeableImageView(context, attrs, defStyleAttr) {
 
     private var ratio: Float = DEFAULT_RATIO
 
