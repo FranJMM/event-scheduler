@@ -11,6 +11,10 @@ interface EventDao {
     fun getAll(): Flow<List<EventEntity>>
 
     @Transaction
+    @Query("SELECT * FROM EventBasicEntity WHERE favorite is 1")
+    fun getFavorites(): Flow<List<EventEntity>>
+
+    @Transaction
     @Query("SELECT * FROM EventBasicEntity WHERE id = :id")
     fun findById(id: String): Flow<EventEntity>
 

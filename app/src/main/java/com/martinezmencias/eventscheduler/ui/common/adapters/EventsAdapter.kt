@@ -1,4 +1,4 @@
-package com.martinezmencias.eventscheduler.ui.list
+package com.martinezmencias.eventscheduler.ui.common.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

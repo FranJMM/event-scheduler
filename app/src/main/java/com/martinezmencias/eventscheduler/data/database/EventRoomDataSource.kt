@@ -14,6 +14,9 @@ class EventRoomDataSource(private val eventDao: EventDao, private val venueDao: 
 
     override val events: Flow<List<Event>> = eventDao.getAll().map { it.toDomainModel() }
 
+    override val favoriteEvents: Flow<List<Event>> =
+        eventDao.getFavorites().map { it.toDomainModel() }
+
     override fun findEventById(id: String) = eventDao.findById(id).map { it.toDomainModel() }
 
     override suspend fun isEmpty(): Boolean = eventDao.eventCount() == 0

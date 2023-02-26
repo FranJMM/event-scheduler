@@ -14,4 +14,7 @@
     <string name="add_date">Añadir</string>
     <string name="venue">Lugar</string>
     <string name="price">Precio</string>
+    <string name="go_to_favorites">Ir a favoritos</string>
+    <string name="favorites">Favoritos</string>
+    <string name="favorites_empty">No tienes eventos favoritos todavía. Clica en el botón favorito de un evento y aparecerá aquí</string>
 </resources>

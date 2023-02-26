@@ -17,9 +17,11 @@ import com.martinezmencias.eventscheduler.data.server.EventServerDataSource
 import com.martinezmencias.eventscheduler.data.server.RemoteConnection
 import com.martinezmencias.eventscheduler.data.server.RemoteService
 import com.martinezmencias.eventscheduler.ui.detail.DetailViewModel
+import com.martinezmencias.eventscheduler.ui.favorites.FavoritesViewModel
 import com.martinezmencias.eventscheduler.ui.list.ListViewModel
 import com.martinezmencias.eventscheduler.usecases.FindEventUseCase
 import com.martinezmencias.eventscheduler.usecases.GetEventsUseCase
+import com.martinezmencias.eventscheduler.usecases.GetFavoriteEventsUseCase
 import com.martinezmencias.eventscheduler.usecases.RequestEventsUseCase
 import com.martinezmencias.eventscheduler.usecases.SwitchEventFavoriteUseCase
 import okhttp3.OkHttpClient
@@ -37,11 +39,13 @@ val appModule = module {
 
     // ViewModel
     viewModelOf(::ListViewModel)
+    viewModelOf(::FavoritesViewModel)
     viewModel { (eventId: String) -> DetailViewModel(eventId = eventId, get(), get()) }
 
     // UseCase
     singleOf(::RequestEventsUseCase)
     singleOf(::GetEventsUseCase)
+    singleOf(::GetFavoriteEventsUseCase)
     singleOf(::FindEventUseCase)
     singleOf(::SwitchEventFavoriteUseCase)
 

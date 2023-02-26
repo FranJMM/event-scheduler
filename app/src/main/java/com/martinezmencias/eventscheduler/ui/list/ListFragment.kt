@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.martinezmencias.eventscheduler.R
 import com.martinezmencias.eventscheduler.databinding.FragmentListBinding
+import com.martinezmencias.eventscheduler.ui.common.adapters.EventsAdapter
 import com.martinezmencias.eventscheduler.ui.common.launchAndCollect
 import com.martinezmencias.eventscheduler.ui.util.setVisible
 import kotlinx.coroutines.flow.Flow
@@ -28,6 +29,16 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
         val binding = FragmentListBinding.bind(view).apply {
             recycler.adapter = adapter
+        }
+
+        binding.toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_go_favorites -> {
+                    listState.onFavoritesClicked()
+                    true
+                }
+                else -> false
+            }
         }
 
         viewLifecycleOwner.launchAndCollect(viewModel.state) { state ->

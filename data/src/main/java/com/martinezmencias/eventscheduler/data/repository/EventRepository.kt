@@ -13,6 +13,8 @@ class EventRepository(
 
     val events = localDataSource.events
 
+    val favoriteEvents = localDataSource.favoriteEvents
+
     fun findEventById(id: String) = localDataSource.findEventById(id)
 
     suspend fun requestEvents(): Error? {

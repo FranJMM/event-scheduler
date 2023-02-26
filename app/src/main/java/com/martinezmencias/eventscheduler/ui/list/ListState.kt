@@ -31,6 +31,11 @@ class ListState(
         navController.navigate(action)
     }
 
+    fun onFavoritesClicked() {
+        val action = ListFragmentDirections.actionListToFavorites()
+        navController.navigate(action)
+    }
+
     fun requestLocationPermission(afterRequest: (Boolean) -> Unit) {
         scope.launch {
             val result = permissionRequester.request(Manifest.permission.ACCESS_COARSE_LOCATION)
