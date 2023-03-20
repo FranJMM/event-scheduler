@@ -5,8 +5,7 @@ import com.martinezmencias.eventscheduler.data.database.*
 import com.martinezmencias.eventscheduler.data.datasource.LocationDataSource
 import com.martinezmencias.eventscheduler.data.server.RemoteResult
 import com.martinezmencias.eventscheduler.data.server.RemoteService
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.*
 
 class FakeEventDao(
     eventsBasic: List<EventBasicEntity> = emptyList(),
@@ -37,16 +36,22 @@ class FakeEventDao(
         updateFindEventFlow(inMemoryEvents.value)
     }
 
-    override suspend fun updateEventBasic(eventUpdated: EventBasicEntity) {
-        inMemoryEvents.value.toMutableList().replaceAll { eventEntity ->
-            if (eventUpdated.id == eventEntity.eventBasic.id) {
-                eventEntity.eventBasic.merge(inMemoryVenuesValue)
-            } else {
-                eventEntity
+    override suspend fun updateEventBasic(eventBasicEntityUpdated: EventBasicEntity) {
+        val updatedInMemoryEvents = inMemoryEvents.value.toMutableList().apply {
+            replaceAll { eventEntity ->
+                if (eventBasicEntityUpdated.id == eventEntity.eventBasic.id) {
+                    eventBasicEntityUpdated.merge(inMemoryVenuesValue)
+                } else {
+                    eventEntity
+                }
             }
         }
-        updateFindEventFlow(inMemoryEvents.value)
+        inMemoryEvents.value = updatedInMemoryEvents
+        updateFindEventFlow(updatedInMemoryEvents)
     }
+
+    override fun getFavorites(): Flow<List<EventEntity>> =
+        inMemoryEvents.map { it.filter { event -> event.eventBasic.favorite } }
 
     private fun List<EventBasicEntity>.merge(venues: List<VenueEntity>?) = this.map { eventBasicEntity ->
         eventBasicEntity.merge(venues)

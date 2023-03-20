@@ -1,9 +1,6 @@
 package com.martinezmencias.eventscheduler.appTestShared
 
-import com.martinezmencias.eventscheduler.data.database.EventBasicEntity
-import com.martinezmencias.eventscheduler.data.database.EventEntity
-import com.martinezmencias.eventscheduler.data.database.EventRoomDataSource
-import com.martinezmencias.eventscheduler.data.database.VenueEntity
+import com.martinezmencias.eventscheduler.data.database.*
 import com.martinezmencias.eventscheduler.data.datasource.EventLocalDataSource
 import com.martinezmencias.eventscheduler.data.datasource.EventRemoteDataSource
 import com.martinezmencias.eventscheduler.data.repository.EventRepository
@@ -21,6 +18,31 @@ fun buildEventRepositoryWith(
     val localDataSource = buildEventRoomDataSource(localEventBasicData, localVenueData)
     val remoteDataSource = buildEventRemoteDataSource(remoteData)
     return EventRepository(regionRepository, localDataSource, remoteDataSource)
+}
+
+fun buildDatabaseEventsBasic(vararg id: String) = id.map {
+    EventBasicEntity(
+        id = it,
+        name = "Title $it",
+        imageUrl = "http://image_$it.jpg",
+        startDateAndTime = StartDateAndTime("2023-03-21", "00:00:00"),
+        salesUrl = "http://salesurl_$it.com",
+        salesDateAndTime = SalesDateAndTime("2023-03-20", "00:00:00"),
+        venueId = "1",
+        price = Price(1F, 10F, "EUR"),
+        favorite = false
+    )
+}
+
+fun buildDatabaseVenues(vararg id: String) = id.map {
+    VenueEntity(
+        id = it,
+        name = "Venue $it",
+        city = "City",
+        state = "State",
+        country = "Country",
+        address = "Address"
+    )
 }
 
 fun buildRemoteEmbedded(vararg id: String) = RemoteResult(

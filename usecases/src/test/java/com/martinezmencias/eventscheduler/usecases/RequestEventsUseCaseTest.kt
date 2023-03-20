@@ -13,7 +13,7 @@ import org.mockito.kotlin.verify
 class RequestEventsUseCaseTest {
 
     @Mock
-    lateinit var eventRepository: EventRepository
+    private lateinit var eventRepository: EventRepository
 
     private lateinit var requestEventsUseCase: RequestEventsUseCase
 

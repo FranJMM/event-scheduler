@@ -14,6 +14,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.any
+import org.mockito.kotlin.argThat
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
@@ -21,13 +22,13 @@ import org.mockito.kotlin.whenever
 class EventRepositoryTest {
 
     @Mock
-    lateinit var localDataSource: EventLocalDataSource
+    private lateinit var localDataSource: EventLocalDataSource
 
     @Mock
-    lateinit var remoteDataSource: EventRemoteDataSource
+    private lateinit var remoteDataSource: EventRemoteDataSource
 
     @Mock
-    lateinit var regionRepository: RegionRepository
+    private lateinit var regionRepository: RegionRepository
 
     private lateinit var eventRepository: EventRepository
 
@@ -57,5 +58,42 @@ class EventRepositoryTest {
         eventRepository.requestEvents()
 
         verify(localDataSource).saveEvents(remoteEvents)
+    }
+
+    @Test
+    fun `Finding an event by id is done in local data source`(): Unit = runBlocking {
+        val event = flowOf(sampleEvent.copy(id = "5"))
+        whenever(localDataSource.findEventById("5")).thenReturn(event)
+
+        val result = eventRepository.findEventById("5")
+
+        assertEquals(event, result)
+    }
+
+    @Test
+    fun `Switching favorite updates local data source`(): Unit = runBlocking {
+        val event = sampleEvent.copy(id = "3")
+
+        eventRepository.switchFavorite(event)
+
+        verify(localDataSource).updateEvent(argThat { id == "3" })
+    }
+
+    @Test
+    fun `Switching favorite marks as favorite an unfavorite movie`(): Unit = runBlocking {
+        val event = sampleEvent.copy(id = "1", favorite = false)
+
+        eventRepository.switchFavorite(event)
+
+        verify(localDataSource).updateEvent(argThat { favorite })
+    }
+
+    @Test
+    fun `Switching favorite marks as unfavorite a favorite event`(): Unit = runBlocking {
+        val event = sampleEvent.copy(favorite = true)
+
+        eventRepository.switchFavorite(event)
+
+        verify(localDataSource).updateEvent(argThat { !favorite })
     }
 }
