@@ -56,7 +56,7 @@ class ListIntegrationTests {
 
     @Test
     fun `data is loaded from local source when available`() = runTest {
-        val localEventBasicData= buildDatabaseEventsBasic("1", "2", "3")
+        val localEventBasicData = buildDatabaseEventsBasic("1", "2", "3")
         val localVenueData = buildDatabaseVenues("1")
         val remoteData = buildRemoteEvents("4", "5", "6")
         val vm = buildViewModelWith(
@@ -84,8 +84,8 @@ class ListIntegrationTests {
         remoteData: List<RemoteEvent>
     ): ListViewModel {
         val eventsRepository = buildEventRepositoryWith(localEventBasicData, localVenueData, remoteData)
-        val getPopularMoviesUseCase = GetEventsUseCase(eventsRepository)
-        val requestPopularMoviesUseCase = RequestEventsUseCase(eventsRepository)
-        return ListViewModel(getPopularMoviesUseCase, requestPopularMoviesUseCase)
+        val getEventsUseCase = GetEventsUseCase(eventsRepository)
+        val requestEventsUseCase = RequestEventsUseCase(eventsRepository)
+        return ListViewModel(getEventsUseCase, requestEventsUseCase)
     }
 }
