@@ -7,6 +7,7 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.rule.GrantPermissionRule
@@ -45,6 +46,13 @@ class MainInstrumentationTest {
 
         val resource = OkHttp3IdlingResource.create("OkHttp", okHttpClient)
         IdlingRegistry.getInstance().register(resource)
+    }
+
+    @Test
+    fun click_favorites_button_navigates_to_favorites_and_shows_favorites_empty_message() {
+        Espresso.onView(withId(R.id.action_go_favorites)).perform(ViewActions.click())
+        Espresso.onView(withId(R.id.favorites_empty_message))
+            .check(ViewAssertions.matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
     }
 
     @Test
