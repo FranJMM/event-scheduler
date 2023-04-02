@@ -6,5 +6,19 @@ plugins {
     alias libs.plugins.org.jetbrains.kotlin.jvm apply false
     alias libs.plugins.org.jetbrains.kotlin.kapt apply false
     alias libs.plugins.androidx.navigation.safeargs.kotlin apply false
+    alias libs.plugins.com.github.ben.manes.versions
+    alias libs.plugins.nl.littlerobots.version.catalog.update
 }
 
+// Taken from https://github.com/ben-manes/gradle-versions-plugin
+def isNonStable = { String version ->
+    def stableKeyword = ['RELEASE', 'FINAL', 'GA'].any { it -> version.toUpperCase().contains(it) }
+    def regex = /^[0-9,.v-]+(-r)?$/
+    return !stableKeyword && !(version ==~ regex)
+}
+
+tasks.named("dependencyUpdates").configure {
+    rejectVersionIf {
+        isNonStable(it.candidate.version) && !isNonStable(it.currentVersion)
+    }
+}

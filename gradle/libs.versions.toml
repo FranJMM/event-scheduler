@@ -1,70 +1,88 @@
 [versions]
-android-material = "1.7.0"
-androidx-core = "1.9.0"
-androidx-appcompat = "1.5.1"
+android-material = "1.8.0"
+androidx-appcompat = "1.6.1"
 androidx-constraintlayout = "2.1.4"
+androidx-core = "1.9.0"
 androidx-navigation = "2.5.3"
-androidx-room = "2.4.3"
-androidx-test = "1.4.0"
-androidx-test-ext-junit = "1.1.3"
-androidx-test-espresso-contrib = "3.4.0"
-arrow = "1.1.3"
+androidx-room = "2.5.1"
+androidx-test = "1.5.2"
+androidx-test-espresso-contrib = "3.5.1"
+androidx-test-ext-junit = "1.1.5"
+arrow = "1.1.5"
+ben-manes-plugin-version = "0.46.0"
 coroutines = "1.6.4"
-glide = "4.13.1"
+glide = "4.15.1"
+gradle-plugin-version = "7.4.2"
 junit = "4.13.2"
-koin = "3.2.0"
-mockito-kotlin = "4.0.0"
-mockito-inline = "4.4.0"
-okhttp3= "4.10.0"
+koin = "3.4.0"
+mockito-inline = "5.2.0"
+mockito-kotlin = "4.1.0"
+nl-littlerobots-version-catalog-update-version = "0.8.0"
+okhttp3 = "4.10.0"
+org-jetbrains-kotlin = "1.8.20"
 playservices-location = "21.0.1"
 retrofit = "2.9.0"
-turbine = "0.12.1"
-
-gradle-plugin-version = "7.3.0"
-org-jetbrains-kotlin = "1.7.20"
+turbine = "0.12.3"
 
 [libraries]
 android-material = { module = "com.google.android.material:material", version.ref = "android-material" }
-androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
 androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
-androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "androidx-room"}
-androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidx-room"}
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidx-room" }
-androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test"}
-androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test"}
-androidx-test-ext-junit = { module = "androidx.test.ext:junit-ktx", version.ref = "androidx-test-ext-junit" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidx-room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "androidx-room" }
 androidx-test-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "androidx-test-espresso-contrib" }
+androidx-test-ext-junit = { module = "androidx.test.ext:junit-ktx", version.ref = "androidx-test-ext-junit" }
+androidx-test-rules = "androidx.test:rules:1.5.0"
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test" }
 arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrow" }
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 junit = { module = "junit:junit", version.ref = "junit" }
-koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin"}
-koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin"}
-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito-kotlin"}
-mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockito-inline"}
-okttp3-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp3"}
-okttp3-mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp3"}
-playservices-location = { module = "com.google.android.gms:play-services-location", version.ref = "playservices-location"}
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
+mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockito-inline" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito-kotlin" }
+okttp3-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp3" }
+okttp3-mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp3" }
+playservices-location = { module = "com.google.android.gms:play-services-location", version.ref = "playservices-location" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-converter-json = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
-turbine = { module="app.cash.turbine:turbine", version.ref = "turbine"}
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 [bundles]
-androidx-navigation = ["androidx-navigation-fragment", "androidx-navigation-ui"]
-androidx-room = ["androidx-room-runtime", "androidx-room-ktx"]
-glide = ["glide"]
-mockito = ["mockito-kotlin", "mockito-inline"]
-retrofit = ["retrofit", "retrofit-converter-json", "okttp3-logging-interceptor"]
+androidx-navigation = [
+    "androidx-navigation-fragment",
+    "androidx-navigation-ui",
+]
+androidx-room = [
+    "androidx-room-ktx",
+    "androidx-room-runtime",
+]
+glide = [
+    "glide",
+]
+mockito = [
+    "mockito-inline",
+    "mockito-kotlin",
+]
+retrofit = [
+    "okttp3-logging-interceptor",
+    "retrofit",
+    "retrofit-converter-json",
+]
 
 [plugins]
+androidx-navigation-safeargs-kotlin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "androidx-navigation" }
 com-android-application = { id = "com.android.application", version.ref = "gradle-plugin-version" }
 com-android-library = { id = "com.android.library", version.ref = "gradle-plugin-version" }
+com-github-ben-manes-versions = { id = "com.github.ben-manes.versions", version.ref = "ben-manes-plugin-version" }
+nl-littlerobots-version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "nl-littlerobots-version-catalog-update-version" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin" }
 org-jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "org-jetbrains-kotlin" }
-androidx-navigation-safeargs-kotlin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "androidx-navigation" }
