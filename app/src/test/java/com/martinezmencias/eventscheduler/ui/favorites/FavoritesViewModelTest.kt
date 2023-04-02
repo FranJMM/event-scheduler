@@ -1,4 +1,4 @@
-package com.martinezmencias.eventscheduler.favorites
+package com.martinezmencias.eventscheduler.ui.favorites
 
 import app.cash.turbine.test
 import com.martinezmencias.eventscheduler.testrules.CoroutinesTestRule
