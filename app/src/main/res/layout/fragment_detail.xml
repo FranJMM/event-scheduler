@@ -97,7 +97,8 @@
         android:layout_margin="@dimen/spacing"
         android:src="@drawable/ic_favorite_off"
         android:contentDescription="favorite"
+        android:backgroundTint="?attr/colorPrimary"
         app:layout_anchor="@id/event_image"
         app:layout_anchorGravity="bottom|end"
-        android:backgroundTint="?attr/colorPrimary" />
+        app:tint="@color/white"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
